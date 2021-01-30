@@ -14,15 +14,17 @@ app.set('port', 5231);
 
 app.use(express.static('public'))
 
-//getAll View
+//Home View
 app.get('/home',function(req,res){
     res.render('home');
   });
 
+//Insert View
 app.get('/insert',function(req,res){
     res.render('insert');
 });
 
+//Update-delete view
 app.get('/update-delete',function(req,res){
     res.render('update-delete');
 });
