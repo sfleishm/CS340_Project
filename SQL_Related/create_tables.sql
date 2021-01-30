@@ -30,7 +30,8 @@ CREATE TABLE Books(
     title       VARCHAR(100)    NOT NULL,
     authorID    int             NOT NULL,
     patronID    int,
-    libraryID   int             NOT NULL 
+    libraryID   int             NOT NULL,
+    publicationDate DATETIME    NOT NULL 
     PRIMARY KEY (bookID)
     FOREIGN KEY (authorID)  REFERENCES Authors(authorID)
     FOREIGN KEY (patronID)  REFERENCES Patrons(patronID)
