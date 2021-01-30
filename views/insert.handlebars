@@ -1,72 +1,45 @@
-<<<<<<< HEAD
-<!-- Add Row Form  -->
-<h1>Add Table Entry</h1>
-
-
-<form id="addRow"> 
-    <input type="text" id = "name" name="name" placeholder="Name">
-    <input type="number" id = "reps" name="reps" placeholder="Reps">
-    <input type="number" id = "weight" name="weight" placeholder="Weight - Choose lbs or kg">
-    <input type="text" id = "unit" name="unit" placeholder="Please Type lbs or kg">
-    
-    <input type="date" id = "date" name="date" value="YYYY-MM-DD">
-    <input type="submit" value="Submit">
-</form>
-
 {{!-- Insert into Books --}}
 <h1>Add Entry to Books</h1>
 
-
-<form id="addRow"> 
-    <input type="text" id = "name" name="name" placeholder="Name">
-    <input type="number" id = "reps" name="reps" placeholder="Reps">
-    <input type="number" id = "weight" name="weight" placeholder="Weight - Choose lbs or kg">
-    <input type="text" id = "unit" name="unit" placeholder="Please Type lbs or kg">
+{{!-- Form for adding a new book to the system --}}
+<form id="booksInsert"> 
+    <input type="text" id = "title" name="title" placeholder="Book Title">
+    <input type="date" id = "publicationDate" name="publicationDate" value="YYYY-MM-DD">
+    <input type="number" id = "authorID" name="authorID" placeholder="Which Author is this Book Associated With">
+    <input type="number" id = "libraryID" name="libraryID" placeholder="Which Library is this Book Associated With">
     
-    <input type="date" id = "date" name="date" value="YYYY-MM-DD">
     <input type="submit" value="Submit">
 </form>
 
 {{!-- Insert Into Libraries --}}
 <h1>Add Entry to Libraries</h1>
 
+{{!-- Form for adding a new library to the database --}}
+<form id="librariesInsert"> 
+    <input type="text" id = "libraryName" name="libraryName" placeholder="Library Name">
+    <input type="text" id = "libraryState" name="libraryState" placeholder="Library State">
+    <input type="text" id = "libraryCity" name="libraryCity" placeholder="Library City">
+    <input type="text" id = "libraryStreet" name="libraryStreet" placeholder="Library Street">
+    <input type="text" id = "libraryZip" name="libraryZip" placeholder="Library Zip">
 
-<form id="addRow"> 
-    <input type="text" id = "name" name="name" placeholder="Name">
-    <input type="number" id = "reps" name="reps" placeholder="Reps">
-    <input type="number" id = "weight" name="weight" placeholder="Weight - Choose lbs or kg">
-    <input type="text" id = "unit" name="unit" placeholder="Please Type lbs or kg">
-    
-    <input type="date" id = "date" name="date" value="YYYY-MM-DD">
     <input type="submit" value="Submit">
 </form>
 
 {{!-- Insert Into Patrons --}}
 <h1>Add Entry to Patrons</h1>
 
+{{!-- Form for adding a new patron to the database --}}
+<form id="patronsInsert"> 
+    <input type="text" id = "firstName" name="firstName" placeholder="First Name">
+    <input type="text" id = "lastName" name="lastName" placeholder="Last Name">
 
-<form id="addRow"> 
-    <input type="text" id = "name" name="name" placeholder="Name">
-    <input type="number" id = "reps" name="reps" placeholder="Reps">
-    <input type="number" id = "weight" name="weight" placeholder="Weight - Choose lbs or kg">
-    <input type="text" id = "unit" name="unit" placeholder="Please Type lbs or kg">
-    
-    <input type="date" id = "date" name="date" value="YYYY-MM-DD">
-    <input type="submit" value="Submit">
-</form>
+    <input type="text" id = "patronState" name="patronState" placeholder="Patron State">
+    <input type="text" id = "patronCity" name="patronCity" placeholder="Patron City">
+    <input type="text" id = "patronStreet" name="patronStreet" placeholder="Patron Street">
+    <input type="text" id = "patronZip" name="patronZip" placeholder="Patron Zip">
 
+    <input type="number" id = "libraryID" name="libraryID" placeholder="Which Library is this Book Associated With">
 
-{{!-- Insert into Books --}}
-<h1>Add Entry to Books</h1>
-
-
-<form id="addRow"> 
-    <input type="text" id = "name" name="name" placeholder="Name">
-    <input type="number" id = "reps" name="reps" placeholder="Reps">
-    <input type="number" id = "weight" name="weight" placeholder="Weight - Choose lbs or kg">
-    <input type="text" id = "unit" name="unit" placeholder="Please Type lbs or kg">
-    
-    <input type="date" id = "date" name="date" value="YYYY-MM-DD">
     <input type="submit" value="Submit">
 </form>
 
@@ -74,13 +47,10 @@
 <h1>Add Entry to Genres</h1>
 
 
-<form id="addRow"> 
-    <input type="text" id = "name" name="name" placeholder="Name">
-    <input type="number" id = "reps" name="reps" placeholder="Reps">
-    <input type="number" id = "weight" name="weight" placeholder="Weight - Choose lbs or kg">
-    <input type="text" id = "unit" name="unit" placeholder="Please Type lbs or kg">
-    
-    <input type="date" id = "date" name="date" value="YYYY-MM-DD">
+<form id="genresInsert"> 
+    <input type="text" id = "genreName" name="genreName" placeholder="Genre Name">
+    <input type="text" id = "genreDescription" name="genreDescription" placeholder="Description of the Genre">
+
     <input type="submit" value="Submit">
 </form>
 
@@ -88,15 +58,10 @@
 <h1>Add Entry to Authors</h1>
 
 
-<form id="addRow"> 
-    <input type="text" id = "name" name="name" placeholder="Name">
-    <input type="number" id = "reps" name="reps" placeholder="Reps">
-    <input type="number" id = "weight" name="weight" placeholder="Weight - Choose lbs or kg">
-    <input type="text" id = "unit" name="unit" placeholder="Please Type lbs or kg">
+<form id="authorsInsert"> 
+    <input type="text" id = "firstName" name="firstName" placeholder="First Name">
+    <input type="text" id = "lastName" name="lastName" placeholder="Last Name">
     
-    <input type="date" id = "date" name="date" value="YYYY-MM-DD">
     <input type="submit" value="Submit">
 </form>
-=======
-<h1>Insert</h1>
->>>>>>> 96284e078bc51c56373a3865d8ec418092e9a983
+
