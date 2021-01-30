@@ -15,9 +15,17 @@ app.set('port', 5231);
 app.use(express.static('public'))
 
 //getAll View
-app.get('/',function(req,res){
+app.get('/home',function(req,res){
     res.render('home');
   });
+
+app.get('/insert',function(req,res){
+    res.render('insert');
+});
+
+app.get('/update-delete',function(req,res){
+    res.render('update-delete');
+});
 
 //insert
 app.post('/',function(req,res){
@@ -33,11 +41,6 @@ app.delete('/',function(req,res,next){
 app.put('/',function(req,res,next){
     getAllData(res);
   });
-
-
-app.get('/reset-table',function(req,res,next){
-      res.render('home',context);
-    });
 
 app.use(function(req,res){
   res.status(404);
