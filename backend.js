@@ -25,8 +25,8 @@ app.get('/insert',function(req,res){
 });
 
 //Update-delete view
-app.get('/update-delete',function(req,res){
-    res.render('update-delete');
+app.get('/check-out-book',function(req,res){
+    res.render('check-out-book');
 });
 
 //insert
