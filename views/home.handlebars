@@ -1,1 +1,78 @@
-<h1>Home</h1>
+<!-- Hello Part -->
+<div class="container">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Welcome!</h1>
+        <p class="lead">Find the book you're looking for! </p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="input-group ">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+          aria-describedby="search-addon" />
+        <button type="button" class="btn btn-outline-primary">search</button>
+      </div>
+
+    <!-- Table for Books -->
+    <div class="container" id='tableID'>
+        <table class="table justify-content-center">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Book ID</th>
+                <th scope="col">Book Tite</th>
+                <th scope="col">Author</th>
+                <th scope="col">Publication Date</th>
+                <th scope="col">Library</th>
+                <th scope="col">Checked Out?</th>
+                <th scope="col">Update Row</th>
+                <th scope="col">Delete Row</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>The Fellowship of the Ring</td>
+                <td>JRR Tolkien</td>
+                <td>1954</td>
+                <td>Middle-Earth</td>
+                <td>Y</td>
+                <td><button type="button" class="btn btn-primary">Update</button></td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>The Two Towers</td>
+                <td>JRR Tolkien</td>
+                <td>1954</td>
+                <td>Middle-Earth</td>
+                <td>N</td>
+                <td><button type="button" class="btn btn-primary">Update</button></td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Return of the King</td>
+                <td>JRR Tolkien</td>
+                <td>1955</td>
+                <td>Middle-Earth</td>
+                <td>Y</td>
+                <td><button type="button" class="btn btn-primary">Update</button></td></td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <table class="row justify-content-center" id = "workoutTable">
+        <thead id = "headerRow">
+            <td>ID</td>
+            <td>Book Title</td>
+            <td>Publication Date</td>
+            <td>Author</td>
+            <td>Library Location</td>
+            <td>Checked Out?</td>
+            <td>Update Row</td>
+            <td>Delete Row</td>
+        </thead>
+        <tbody id = "newRowsGoHere"></tbody>    
+
+    </table> -->
+</div>
