@@ -15,18 +15,18 @@ app.set('port', 5231);
 app.use(express.static('public'))
 
 //Home View
-app.get('/home',function(req,res){
+app.get('/home',function(req,res,next){
     res.render('home');
   });
 
 //Insert View
-app.get('/insert',function(req,res){
+app.get('/insert',function(req,res,next){
     res.render('insert');
 });
 
 //Update-delete view
-app.get('/check-out-book',function(req,res){
-    res.render('check-out-book');
+app.get('/check-out-return',function(req,res,next){
+    res.render('check-out-return');
 });
 
 //insert
