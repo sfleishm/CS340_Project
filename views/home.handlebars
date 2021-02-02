@@ -2,15 +2,15 @@
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Welcome!</h1>
-        <p class="lead">Find the book you're looking for! </p>
+        <p class="lead">Find the book you're looking for! (Try to search for a book, it should work)</p>
     </div>
 
     <!-- Search Bar -->
     <div class="input-group ">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-          aria-describedby="search-addon" />
+        <input type="search" class="form-control rounded" onkeyup="myFunction()" id='bookFilter' placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" />
         <button type="button" class="btn btn-outline-primary">search</button>
-      </div>
+    </div>
 
     <!-- Table for Books -->
     <div class="container" id='tableID'>
@@ -27,7 +27,7 @@
                 <th scope="col">Delete Row</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id = 'tbody'>
             <tr>
                 <th scope="row">1</th>
                 <td>The Fellowship of the Ring</td>
