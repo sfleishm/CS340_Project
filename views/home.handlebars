@@ -4,7 +4,13 @@
         <h1 class="display-4">Welcome!</h1>
         <p class="lead">Find the book you're looking for! (Try to search for a book, it should work)</p>
     </div>
-
+    
+    <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" id='bookButtonFilter' class="btn btn-secondary">Book Title</button>
+          <button type="button" id='bookAuthorFilter' class="btn btn-secondary">Author</button>
+          <button type="button" id='bookDateFilter' class="btn btn-secondary">Publication Date</button>
+          <button type="button" id='resetFilter' class="btn btn-secondary">Reset Filter</button>
+    </div>
     <!-- Search Bar -->
     <div class="input-group ">
         <input type="search" class="form-control rounded" onkeyup="myFunction()" id='bookFilter' placeholder="Search by Title" aria-label="Search"
