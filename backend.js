@@ -29,6 +29,26 @@ app.get('/check-out-return',function(req,res,next){
     res.render('check-out-return');
 });
 
+// Authors
+app.get('/authors',function(req,res,next){
+  res.render('authors');
+});
+
+// Libraries
+app.get('/libraries',function(req,res,next){
+  res.render('libraries');
+});
+
+// Patrons 
+app.get('/patrons',function(req,res,next){
+  res.render('patrons');
+});
+
+// Genres
+app.get('/genres',function(req,res,next){
+  res.render('genres');
+});
+
 //insert
 app.post('/',function(req,res){
     getAllData(res);
