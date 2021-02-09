@@ -73,56 +73,138 @@
     </div>
 
     <script>
-      function myFunction() {
+      // Old filter
+    //   function myFunction() {
+    //     var input, filter, table, tr, td, i, txtValue;
+    //     input = document.getElementById('bookFilter');
+    //     filter = input.value;
+    //     table = document.getElementById('tbody');
+    //     tr = table.getElementsByTagName("tr");
+        
+    //     // This works for the date or index [2]
+    //     // for (i = 0; i < tr.length; i++) {
+    //     //   td = tr[i].getElementsByTagName("td")[2];
+    //     //   if (td) {
+    //     //     txtValue = td.textContext || td.innerText;
+    //     //     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //     //       tr[i].style.display = "";
+    //     //     } else {
+    //     //       tr[i].style.display = 'none';
+    //     //     } 
+    //     //   }
+    //     // }
+
+    //     // This works for Book Titles [index 0]
+    //     for (i = 0; i < tr.length; i++) {
+    //       console.log(tr.length)
+    //       td = tr[i].getElementsByTagName("td")[0];
+    //       if (td) {
+    //         // console.log(td)
+    //         txtValue = td.textContext || td.innerText;
+    //         // console.log(txtValue)
+    //         if (txtValue.toUpperCase().includes(filter.toUpperCase())) {
+    //           console.log(txtValue, 'here text log')
+    //           tr[i].style.display = "";
+    //         } else {
+    //           tr[i].style.display = 'none';
+    //         } 
+    //       }
+    //     }
+    // }
+    // Testing new filter funciton with buttons
+    function myFunction() {
+      // If we have clicked Button BookTitle, then we want to filter row 0
+      if (document.getElementById('bookButtonFilter').onclick = function() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById('bookFilter');
         filter = input.value;
         table = document.getElementById('tbody');
         tr = table.getElementsByTagName("tr");
-        
-        // This works for the date or index [2]
-        // for (i = 0; i < tr.length; i++) {
-        //   td = tr[i].getElementsByTagName("td")[2];
-        //   if (td) {
-        //     txtValue = td.textContext || td.innerText;
-        //     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        //       tr[i].style.display = "";
-        //     } else {
-        //       tr[i].style.display = 'none';
-        //     } 
-        //   }
-        // }
 
-        // This works for Book Titles [index 0]
         for (i = 0; i < tr.length; i++) {
-          console.log(tr.length)
-          td = tr[i].getElementsByTagName("td")[0];
-          if (td) {
-            // console.log(td)
-            txtValue = td.textContext || td.innerText;
-            // console.log(txtValue)
-            if (txtValue.toUpperCase().includes(filter.toUpperCase())) {
-              console.log(txtValue, 'here text log')
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = 'none';
-            } 
-          }
+        console.log(tr.length)
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          // console.log(td)
+          txtValue = td.textContext || td.innerText;
+          // console.log(txtValue)
+          if (txtValue.toUpperCase().includes(filter.toUpperCase())) {
+            console.log(txtValue, 'here text log')
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = 'none';
+          } 
         }
+      }
+      });
+
+      // If we have clicked Button Author, then we are filtering on author, row 1   
+
+      if (document.getElementById('bookAuthorFilter').onclick = function() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('bookFilter');
+        filter = input.value;
+        table = document.getElementById('tbody');
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+        console.log(tr.length)
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          // console.log(td)
+          txtValue = td.textContext || td.innerText;
+          // console.log(txtValue)
+          if (txtValue.toUpperCase().includes(filter.toUpperCase())) {
+            console.log(txtValue, 'here text log')
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = 'none';
+          } 
+        }
+      }
+      });
+
+      if (document.getElementById('bookDateFilter').onclick = function() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('bookFilter');
+        filter = input.value;
+        table = document.getElementById('tbody');
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+        console.log(tr.length)
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          // console.log(td)
+          txtValue = td.textContext || td.innerText;
+          // console.log(txtValue)
+          if (txtValue.toUpperCase().includes(filter.toUpperCase())) {
+            console.log(txtValue, 'here text log')
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = 'none';
+          } 
+        }
+      }
+      });
+      
+
+      if (document.getElementById('resetFilter').onclick = function() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('bookFilter');
+        filter = input.value;
+        table = document.getElementById('tbody');
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+        console.log(tr.length)
+        tr[i].style.display = "";
+        
+        }
+      });
+      
+    
     }
     </script>
-    <!-- <table class="row justify-content-center" id = "workoutTable">
-        <thead id = "headerRow">
-            <td>ID</td>
-            <td>Book Title</td>
-            <td>Publication Date</td>
-            <td>Author</td>
-            <td>Library Location</td>
-            <td>Checked Out?</td>
-            <td>Update Row</td>
-            <td>Delete Row</td>
-        </thead>
-        <tbody id = "newRowsGoHere"></tbody>    
-
-    </table> -->
+    
 </div>
