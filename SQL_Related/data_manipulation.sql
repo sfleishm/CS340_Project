@@ -1,10 +1,10 @@
-SELECT * FROM Libraries
+SELECT * FROM Libraries;
 
-SELECT * FROM Patrons
+SELECT * FROM Patrons;
 
-SELECT * FROM Authors
+SELECT * FROM Authors;
 
-SELECT * FROM Genres
+SELECT * FROM Genres;
 
 
 -- Thanks for figuring out how to do this Scott!
