@@ -28,8 +28,7 @@ CREATE TABLE Patrons(
 -- Authors
 CREATE TABLE Authors(
     authorID    int             NOT NULL    AUTO_INCREMENT, 
-    firstName   VARCHAR(25)     NOT NULL,
-    lastName    VARCHAR(25)     NOT NULL, 
+    authorName  VARCHAR(30)     NOT NULL, 
     PRIMARY KEY (authorID)
 );
 
@@ -76,10 +75,10 @@ VALUES  ("Keaton", "Johnston", "Texas", "Dallas", "123 Main Street", "75207", 1)
         ("Scott", "Fleishman", "Oregon", "Corvallis", "321 Park Street", "97331", 1),
         ("Bilbo", "Baggins", "Middle Earth", "Osgiliath", "Bilbo Street", "22151", 1);
 
-INSERT INTO Authors (firstName, lastName)
-VALUES  ("JRR", "Tolkien"),
-        ("Mark", "Twain"),
-        ("Ernest", "Hemingway");
+INSERT INTO Authors (authorName)
+VALUES  ("JRR Tolkien"),
+        ("Mark Twain"),
+        ("Ernest Hemingway");
 
 INSERT INTO Books (title, authorID, patronID, libraryID, publicationDate)
 VALUES  ("The Fellowship of the Ring", 1, NULL, 1, 19540729),

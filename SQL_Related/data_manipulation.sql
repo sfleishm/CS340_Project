@@ -7,9 +7,10 @@ SELECT * FROM Authors
 SELECT * FROM Genres
 
 
--- again, this may not be the most effective way to do it, but its what i've got right now
-SELECT Books.bookID, Books.title, Genres.genreName, Authors.firstName, Authors.lastName, Books.publicationDate, Books.patronID
+-- Thanks for figuring out how to do this Scott!
+SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT Genres.genreName ORDER BY Genres.genreName) as 'Genre', Authors.authorName, Books.publicationDate, Books.patronID
 FROM Books
 JOIN Books_Genres ON Books.bookID = Books_Genres.bookID
 JOIN Genres ON Books_Genres.genreID = Genres.genreID
-JOIN Authors ON Authors.authorID = Books.authorID;
+JOIN Authors ON Authors.authorID = Books.authorID
+GROUP BY Books.bookID;
