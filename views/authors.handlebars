@@ -7,15 +7,15 @@
 <table>
     <thead> 
         <th>ID</th> 
-        <th>First Name</th>
-        <th>Last Name</th>  
+        <th>Name</th>
+        <th>Delete</th>  
+        <th>Update</th> 
     </thead> 
     <tbody> 
         {{#each authors}} 
         <tr> 
             <td>{{authorID}}</td> 
-            <td>{{firstName}}</td> 
-            <td>{{lastName}}</td> 
+            <td>{{authorName}}</td> 
             <td><button onclick="deletePerson({{id}})">Delete</button></td>
             <td><a href="/people/{{id}}">Update</a></td>
         </tr> 
