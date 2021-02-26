@@ -93,6 +93,7 @@ app.get('/genres',function(req,res,next){
     }
     context.results = rows;
     res.render('genres', context);
+  })
 });
 
 //insert
