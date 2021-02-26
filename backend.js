@@ -38,9 +38,8 @@ app.get('/authors',function(req,res,next){
       return;
     }
     context.results = rows;
-    console.log(context);
+    res.render('authors', context);
   })
-  res.render('authors', context);
 });
 
 // Libraries
