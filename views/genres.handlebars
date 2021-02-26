@@ -25,13 +25,15 @@
             </tr>
             </thead>
             <tbody id = 'tbody'>
+            {{#each results}} 
             <tr>
-                <th scope="row">1</th>
-                <td>Fantasy</td>
-                <td>Genre that relates to magical, mythical, or supernatural stories.</td>
+                <th>{{this.genreID}}</th>
+                <td>{{this.genreName}}</td>
+                <td>{{this.description}}</td>
                 <td><button type="button" class="btn btn-primary">Update</button></td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>
             </tr>
+            {{/each}} 
             </tbody>
         </table>
     </div>
