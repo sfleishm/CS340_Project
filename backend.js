@@ -14,10 +14,14 @@ app.set('port', 5231);
 
 app.use(express.static('public'))
 
+
+// Use view authors for /authors
+app.use('/authors', require('viewAuthors.js'));
+
 //Home View
 app.get('/home',function(req,res,next){
     res.render('home');
-    
+
   });
 
 //Insert View

@@ -11,7 +11,7 @@
         <th>Last Name</th>  
     </thead> 
     <tbody> 
-        {{#each author}} 
+        {{#each Authors}} 
         <tr> 
             <td>{{authorID}}</td> 
             <td>{{firstName}}</td> 
@@ -53,13 +53,20 @@
             </tr>
             </thead>
             <tbody id = 'tbody'>
+            {{#each Authors}} 
             <tr>
-                <th scope="row">1</th>
+              <td>{{authorID}}</td> 
+              <td>{{firstName}}</td> 
+              <td>{{lastName}}</td> 
+              {{!-- <td><button onclick="deletePerson({{id}})">Delete</button></td>
+              <td><a href="/people/{{id}}">Update</a></td> --}}
+                {{!-- <th scope="row">1</th>
                 <td>JRR</td>
-                <td>Tolkien</td>
-                <td><button type="button" class="btn btn-primary">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <td>Tolkien</td> --}}
+              <td><button type="button" class="btn btn-primary">Update</button></td>
+              <td><button type="button" class="btn btn-danger">Delete</button></td>
             </tr>
+             {{/each}} 
             </tbody>
         </table>
     </div>
