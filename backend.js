@@ -76,7 +76,7 @@ app.get('/libraries',function(req,res,next){
       return;
     }
     context.results = rows;
-    res.render('libraries');
+    res.render('libraries', context);
   })
 });
 
