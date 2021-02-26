@@ -16,7 +16,7 @@ app.use(express.static('public'))
 
 
 // Use view authors for /authors
-app.use('/authors', require('viewAuthors.js'));
+app.use('/authors', require('./authors.js'));
 
 //Home View
 app.get('/home',function(req,res,next){
