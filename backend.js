@@ -18,10 +18,31 @@ const getAuthorsQuery = 'SELECT authorID, authorName FROM Authors';
 const getGenresQuery = 'SELECT * FROM Genres';
 const getPatronsQuery = 'SELECT * FROM Patrons';
 
+const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT Genres.genreName ORDER BY Genres.genreName) as 'Genre', 
+                        Authors.authorName, Books.publicationDate, Libary.name
+                        FROM Books 
+                        JOIN Books_Genres ON Books.bookID = Books_Genres.bookID
+                        JOIN Genres ON Books_Genres.genreID = Genres.genreID
+                        JOIN Authors ON Authors.authorID = Books.authorID
+                        JOIN Library ON Library.libraryID = Books.libraryID
+                        GROUP BY Books.bookID;
+                        `
+;
+
+                        
+const selectLibraries = `SELECT * FROM Libraries`;
 //Home View
 app.get('/home',function(req,res,next){
-    res.render('home');
-  });
+  var context = {};
+  mysql.pool.query(selectHome, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('home', context);
+  })
+});
 
 //Insert View
 app.get('/insert',function(req,res,next){
@@ -48,7 +69,15 @@ app.get('/authors',function(req,res,next){
 
 // Libraries
 app.get('/libraries',function(req,res,next){
-  res.render('libraries');
+  var context = {};
+  mysql.pool.query(selectLibraries, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('libraries');
+  })
 });
 
 // Patrons 
