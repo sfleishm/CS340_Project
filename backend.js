@@ -31,6 +31,7 @@ const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT
 
                         
 const selectLibraries = `SELECT * FROM Libraries`;
+
 //Home View
 app.get('/home',function(req,res,next){
   var context = {};

@@ -28,6 +28,7 @@
             </tr>
             </thead>
             <tbody id = 'tbody'>
+            {{#each results}}
             <tr>
                 <td>{{this.libraryID}}</td> 
                 <td>{{this.name}}</td> 
@@ -38,6 +39,7 @@
                 <td><button type="button" class="btn btn-primary">Update</button></td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>
             </tr>
+            {{/each}}
             </tbody>
         </table>
     </div>
