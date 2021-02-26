@@ -18,14 +18,14 @@ const getAuthorsQuery = 'SELECT authorID, authorName FROM Authors';
 const getGenresQuery = 'SELECT * FROM Genres';
 const getPatronsQuery = 'SELECT * FROM Patrons';
 
-const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT Genres.genreName ORDER BY Genres.genreName) as 'Genre', 
-                        Authors.authorName, Books.publicationDate, Libary.name
+const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT Genres.genreName ORDER BY Genres.genreName) as 'Genres', 
+                        Authors.authorName, Books.publicationDate, Libraries.name
                         FROM Books 
                         JOIN Books_Genres ON Books.bookID = Books_Genres.bookID
                         JOIN Genres ON Books_Genres.genreID = Genres.genreID
                         JOIN Authors ON Authors.authorID = Books.authorID
-                        JOIN Library ON Library.libraryID = Books.libraryID
-                        GROUP BY Books.bookID;
+                        JOIN Libraries ON Libraries.libraryID = Books.libraryID
+                        GROUP BY Books.bookID
                         `
 ;
 

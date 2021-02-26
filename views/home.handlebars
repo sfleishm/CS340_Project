@@ -26,7 +26,7 @@
             <tr>
                 <th scope="col">Book ID</th>
                 <th scope="col">Book Title</th>
-                <th scope="col" colspan="3">Genres</th>
+                <th scope="col">Genres</th>
                 <th scope="col">Author</th>
                 <th scope="col">Publication Date</th>
                 <th scope="col">Library</th>
@@ -37,14 +37,14 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-              <td>{{Books.bookID}}</td> 
-              <td>{{Books.title}}</td>
-              <td>{{Genres.genreName}}</td>
-              <td>{{Genres.genreName}}</td>
-              <td>{{Genres.genreName}}</td>
-              <td>{{Authors.authorName}}</td>
-              <td>{{Books.publicationDate}}</td>
-              <td>{{Library.name}}</td>
+              <td>{{this.bookID}}</td> 
+              <td>{{this.title}}</td>
+	      <td>{{this.Genres}}</td>
+              <td>{{this.authorName}}</td>
+              <td>{{this.publicationDate}}</td>
+              <td>{{this.name}}</td>
+              <td><button type="button" class="btn btn-primary">Update</button></td></td>
+              <td><button type="button" class="btn btn-danger">Delete</button></td>
 
                 {{!-- <th scope="row">1</th>
                 <td>The Fellowship of the Ring</td>

@@ -30,18 +30,20 @@
             </tr>
             </thead>
             <tbody id = 'tbody'>
+            {{#each results}}
             <tr>
-                <th scope="row">1</th>
-                <td>Frodo</td>
-                <td>Baggins</td>
-                <td>Shire</td>
-                <td>Inner City</td>
-                <td>Long Road</td>
-                <td>65465</td>
-                <td>4</td>
+                <td>{{this.patronID}}</td>
+                <td>{{this.firstName}}</td>
+                <td>{{this.lastName}}</td>
+                <td>{{this.state}}</td>
+                <td>{{this.city}}</td>
+                <td>{{this.street}}</td>
+                <td>{{this.zip}}</td>
+                <td>{{this.libraryID}}</td>
                 <td><button type="button" class="btn btn-primary">Update</button></td>
                 <td><button type="button" class="btn btn-danger">Delete</button></td>
             </tr>
+            {{/each}}
             </tbody>
         </table>
     </div>
@@ -70,7 +72,7 @@
         // This works for Book Titles [index 0]
         for (i = 0; i < tr.length; i++) {
           console.log(tr.length)
-          td = tr[i].getElementsByTagName("td")[0];
+          td = tr[i].getElementsByTagName("td")[1];
           if (td) {
             // console.log(td)
             txtValue = td.textContext || td.innerText;
