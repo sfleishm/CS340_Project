@@ -17,6 +17,7 @@ app.use(express.static('public'))
 //Home View
 app.get('/home',function(req,res,next){
     res.render('home');
+    
   });
 
 //Insert View
