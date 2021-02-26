@@ -1,3 +1,31 @@
+{{!-- Trying the way prof did it  --}}
+<h1>Current people:</h1>
+<h1>Handlebars JS Example</h1>
+{{#each foo}}
+{{this}}
+{{/each}}
+<table>
+    <thead> 
+        <th>ID</th> 
+        <th>First Name</th>
+        <th>Last Name</th>  
+    </thead> 
+    <tbody> 
+        {{#each author}} 
+        <tr> 
+            <td>{{authorID}}</td> 
+            <td>{{firstName}}</td> 
+            <td>{{lastName}}</td> 
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><a href="/people/{{id}}">Update</a></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+    
+</table> 
+
+
+
 <!-- Hello Part -->
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
