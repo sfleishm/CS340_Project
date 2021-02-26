@@ -14,6 +14,8 @@ app.set('port', 5231);
 
 app.use(express.static('public'))
 
+const getAuthorsQuery = 'SELECT authorID, authorName FROM Authors';
+
 //Home View
 app.get('/home',function(req,res,next){
     res.render('home');
@@ -54,7 +56,14 @@ app.get('/patrons',function(req,res,next){
 
 // Genres
 app.get('/genres',function(req,res,next){
-  res.render('genres');
+  var context = {};
+  mysql.pool.query(getGenresQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('genres', context);
 });
 
 //insert
