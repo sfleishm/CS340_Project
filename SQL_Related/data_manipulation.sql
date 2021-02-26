@@ -22,19 +22,22 @@ GROUP BY Books.bookID;
 -- aren't unless required by guidelines.
 
 -- Books Delete
-DELETE FROM Books WHERE bookID=?
+DELETE FROM Books WHERE bookID=?;
 
 -- Authors Delete
-DELETE FROM Authors WHERE authorID=?
+DELETE FROM Authors WHERE authorID=?;
 
 -- Genres Delete
-DELETE FROM Genres WHERE genreID=?
+DELETE FROM Genres WHERE genreID=?;
 
 -- Patrons Delete
-DELETE FROM Patrons WHERE patronID=?
+DELETE FROM Patrons WHERE patronID=?;
 
 -- Libraries Delete
-DELETE FROM Libraries WHERE libraryID=?
+DELETE FROM Libraries WHERE libraryID=?;
+
+-- Books_Genres Delete
+DELETE FROM Books_Genres WHERE bookID=?;
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
