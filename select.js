@@ -13,7 +13,7 @@ const selectLibraries = `SELECT * FROM Libraries`;
 
 const selectPatrons = `SELECT * FROM Patrons`;
 
-const selectAuthors = `SELECT * FROM Authors`;
+const selectAuthors = `SELECT authorID, firstName, lastName FROM Authors`;
 
 const selectGenres = `SELECT * FROM Genres`;
 
