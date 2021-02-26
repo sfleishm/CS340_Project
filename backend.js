@@ -14,14 +14,9 @@ app.set('port', 5231);
 
 app.use(express.static('public'))
 
-
-// Use view authors for /authors
-app.use('/authors', require('./authors.js'));
-
 //Home View
 app.get('/home',function(req,res,next){
     res.render('home');
-
   });
 
 //Insert View
@@ -36,7 +31,16 @@ app.get('/check-out-return',function(req,res,next){
 
 // Authors
 app.get('/authors',function(req,res,next){
-  res.render('authors');
+  var context = {};
+  mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    console.log(context);
+  })
+  res.render('authors', context);
 });
 
 // Libraries
