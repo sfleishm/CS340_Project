@@ -3,6 +3,8 @@ form {padding: 0px 25px 50px 25px;}
 h1 {padding-left: 10px}
 </style>
 
+<script type="text/javascript" src="/scripts/insert.js"></script>
+
 {{!-- Insert into Books --}}
 <h1>Add Entry to Books</h1>
 
@@ -16,7 +18,7 @@ h1 {padding-left: 10px}
     <input type="text" id = "genre2" name="genre2" placeholder="2nd Genre">
     <input type="text" id = "genre3" name="genre3" placeholder="3rd Genre">
     
-    <input type="submit" value="Submit">
+    <input id="BookSubmit" type="submit" value="Submit">
 </form>
 
 {{!-- Insert Into Libraries --}}
@@ -30,7 +32,7 @@ h1 {padding-left: 10px}
     <input type="text" id = "libraryStreet" name="libraryStreet" placeholder="Library Street">
     <input type="text" id = "libraryZip" name="libraryZip" placeholder="Library Zip">
 
-    <input type="submit" value="Submit">
+    <input id="LibrarySubmit" type="submit" value="Submit">
 </form>
 
 {{!-- Insert Into Patrons --}}
@@ -48,7 +50,7 @@ h1 {padding-left: 10px}
 
     <input type="number" id = "libraryID" name="libraryID" placeholder="Which Library is this Patron Associated With">
 
-    <input type="submit" value="Submit">
+    <input id="PatronSubmit" type="submit" value="Submit">
 </form>
 
 {{!-- Insert into Genres --}}
@@ -58,7 +60,7 @@ h1 {padding-left: 10px}
 <form id="genresInsert"> 
     <input type="text" id = "genreName" name="genreName" placeholder="Genre Name">
     <input type="text" id = "genreDescription" name="genreDescription" placeholder="Description of the Genre">
-    <input type="submit" value="Submit">
+    <input id="GenreSubmit" type="submit" value="Submit">
 </form>
 
 {{!-- Insert into Authors --}}
@@ -66,9 +68,7 @@ h1 {padding-left: 10px}
 
 
 <form id="authorsInsert"> 
-    <input type="text" id = "firstName" name="firstName" placeholder="First Name">
-    <input type="text" id = "lastName" name="lastName" placeholder="Last Name">
-
-    <input type="submit" value="Submit">
+    <input type="text" id = "authorName" name="authorName" placeholder="First Name & Last Name">
+    <input id="AuthorSubmit" type="submit" value="Submit">
 </form>
 

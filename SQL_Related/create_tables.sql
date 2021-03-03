@@ -50,7 +50,7 @@ CREATE TABLE Books(
 CREATE TABLE Genres(
     genreID     int             NOT NULL    AUTO_INCREMENT,
     genreName   VARCHAR(20)     NOT NULL,
-    description VARCHAR(50)     NOT NULL,
+    description VARCHAR(100)     NOT NULL,
     PRIMARY KEY (genreID)
 );
 

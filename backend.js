@@ -17,6 +17,7 @@ app.use(express.static('public'))
 const getAuthorsQuery = 'SELECT authorID, authorName FROM Authors';
 const getGenresQuery = 'SELECT * FROM Genres';
 const getPatronsQuery = 'SELECT * FROM Patrons';
+const selectLibraries = `SELECT * FROM Libraries`;
 
 const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT Genres.genreName ORDER BY Genres.genreName) as 'Genres', 
                         Authors.authorName, Books.publicationDate, Libraries.name
@@ -29,8 +30,6 @@ const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT
                         `
 ;
 
-                        
-const selectLibraries = `SELECT * FROM Libraries`;
 
 //Home View
 app.get('/home',function(req,res,next){
@@ -48,6 +47,10 @@ app.get('/home',function(req,res,next){
 //Insert View
 app.get('/insert',function(req,res,next){
     res.render('insert');
+});
+
+app.post('/insert',function(req,res,next){
+  //skeleton code for insert
 });
 
 //Update-delete view
