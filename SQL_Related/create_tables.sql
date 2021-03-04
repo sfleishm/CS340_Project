@@ -39,7 +39,7 @@ CREATE TABLE Books(
     authorID    int             NOT NULL,
     patronID    int,
     libraryID   int             NOT NULL,
-    publicationDate DATETIME    NOT NULL, 
+    publicationDate DATE    NOT NULL, 
     PRIMARY KEY (bookID),
     FOREIGN KEY (authorID)  REFERENCES Authors(authorID),
     FOREIGN KEY (patronID)  REFERENCES Patrons(patronID),
