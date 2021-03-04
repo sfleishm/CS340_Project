@@ -81,9 +81,9 @@ VALUES  ("JRR Tolkien"),
         ("Ernest Hemingway");
 
 INSERT INTO Books (title, authorID, patronID, libraryID, publicationDate)
-VALUES  ("The Fellowship of the Ring", 1, NULL, 1, 19540729),
-        ("The Two Towers", 1, 3, 1, 19541111),
-        ("Return of the King", 1, 3, 1, 19551020);
+VALUES  ("The Fellowship of the Ring", 1, NULL, 1, '1954-07-29'),
+        ("The Two Towers", 1, 3, 1, '1954-11-11'),
+        ("Return of the King", 1, 3, 1, '1955-10-20');
 
 INSERT INTO Genres (genreName, description)
 VALUES  ("Fantasy", "relates to magical, mythical, or supernatural stories"),
