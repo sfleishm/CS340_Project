@@ -30,6 +30,12 @@ const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT
                         `
 ;
 
+const insertBook = 'INSERT INTO Books (title, authorID, patronID, libraryID, publicationDate) VALUES (?, ?, ?, ?, ?)';
+const insertLibary = 'INSERT INTO Libraries (name, street, state, city, zip) VALUES (?, ?, ?, ?, ?)';
+const insertPatron = 'INSERT INTO Patrons (firstName, lastName, state, city, street, zip, libraryID) VALUES (?, ?, ?, ?, ?, ?, ?)';
+const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
+const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
+
 
 //Home View
 app.get('/home',function(req,res,next){
@@ -50,7 +56,40 @@ app.get('/insert',function(req,res,next){
 });
 
 app.post('/insert',function(req,res,next){
-  //skeleton code for insert
+
+  var {submit} = req.body;
+  // if author is being submitted
+  if (submit == 'Author') {
+    var {authorName} = req.body;
+    if (authorName == '') {
+      authorName = null
+    }
+    mysql.pool.query(insertAuthor, [authorName], (err, result) => {
+      if(err){
+        next(err);
+        return;
+      }
+    })
+  } 
+  // if genre is being submitted
+  else if (submit == 'Genre') {
+    var {genreName, description} = req.body;
+
+    if (genreName == '') {
+      genreName = null
+    }
+    if (description == '') {
+      description = null
+    }
+
+    mysql.pool.query(insertGenre, [genreName, description], (err, result) => {
+      if(err){
+        next(err);
+        return;
+      }
+    })
+  }
+  
 });
 
 //Update-delete view

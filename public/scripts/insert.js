@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', SubmitBook)
-document.addEventListener('DOMContentLoaded', SubmitLibrary)
-document.addEventListener('DOMContentLoaded', SubmitPatron)
+//document.addEventListener('DOMContentLoaded', SubmitBook)
+//document.addEventListener('DOMContentLoaded', SubmitLibrary)
+//document.addEventListener('DOMContentLoaded', SubmitPatron)
 document.addEventListener('DOMContentLoaded', SubmitGenre)
 document.addEventListener('DOMContentLoaded', SubmitAuthor)
 
@@ -14,32 +14,59 @@ const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
 
 const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
 
-Function SubmitBook() {
-    document.getElementById('BookSubmit').addEventListener('click', function(event){
-        //skeleton code
-    });
-};
+//function SubmitBook() {
+//    document.getElementById('BookSubmit').addEventListener('click', function(event){
+//        //skeleton code
+//    });
+//};
 
-Function SubmitLibrary() {
-    document.getElementById('LibrarySubmit').addEventListener('click', function(event){
-        //skeleton code
-    });
-};
+//function SubmitLibrary() {
+//    document.getElementById('LibrarySubmit').addEventListener('click', function(event){
+//        //skeleton code
+//    });
+//};
 
-Function SubmitPatron() {
-    document.getElementById('PatronSubmit').addEventListener('click', function(event){
-        //skeleton code
-    });
-};
+//function SubmitPatron() {
+//    document.getElementById('PatronSubmit').addEventListener('click', function(event){
+//        //skeleton code
+//    });
+//};
 
-Function SubmitGenre() {
+function SubmitGenre() {
     document.getElementById('GenreSubmit').addEventListener('click', function(event){
-        //skeleton code
+        var req = new XMLHttpRequest();
+        var submit = 'Genre'
+        var genreName = document.getElementById('genreName').value
+        var description = document.getElementById('genreDescription').value
+        var payload = { submit: submit, genreName: genreName, description: description }
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load', function(){
+            if(req.status >= 200 && req.status < 400){
+                var response = JSON.parse(req.responseText);
+            } else{
+                console.log("error in network request: " + req.statusText);
+            }
+    });
+    req.send(JSON.stringify(payload));
     });
 };
 
-Function SubmitAuthor() {
+function SubmitAuthor() {
     document.getElementById('AuthorSubmit').addEventListener('click', function(event){
-        //skeleton code
+        var req = new XMLHttpRequest();
+        var submit = 'Author'
+        var name = document.getElementById('authorName').value
+        var payload = { submit: submit, authorName: name }
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load', function(){
+            if(req.status >= 200 && req.status < 400){
+                var response = JSON.parse(req.responseText);
+            } else{
+                console.log("error in network request: " + req.statusText);
+            }
+        });
+        req.send(JSON.stringify(payload));
     });
 };
