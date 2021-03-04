@@ -1,4 +1,4 @@
-//document.addEventListener('DOMContentLoaded', SubmitBook)
+document.addEventListener('DOMContentLoaded', SubmitBook)
 document.addEventListener('DOMContentLoaded', SubmitLibrary)
 document.addEventListener('DOMContentLoaded', SubmitPatron)
 document.addEventListener('DOMContentLoaded', SubmitGenre)
@@ -14,11 +14,38 @@ const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
 
 const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
 
-//function SubmitBook() {
-//    document.getElementById('BookSubmit').addEventListener('click', function(event){
-//        //skeleton code
-//    });
-//};
+function SubmitBook() {
+    document.getElementById('BookSubmit').addEventListener('click', function(event){
+        var req = new XMLHttpRequest();
+        var submit = 'Book'
+        var title = document.getElementById('title').value
+        var authorID = document.getElementById('authorID').value
+        var libraryID = document.getElementById('libraryID').value
+        var publicationDate = document.getElementById('publicationDate').value
+        var genre1 = document.getElementById('genre1').value
+        var genre2 = document.getElementById('genre2').value
+        var genre3 = document.getElementById('genre3').value
+        var payload = 
+            { submit: submit,
+              title: title,
+              authorID: authorID,
+              libraryID: libraryID,
+              publicationDate: publicationDate,
+              genre1: genre1,
+              genre2: genre2,
+              genre3: genre3 }
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load', function(){
+            if(req.status >= 200 && req.status < 400){
+                var response = JSON.parse(req.responseText);
+            } else{
+                console.log("error in network request: " + req.statusText);
+            }
+        });
+    req.send(JSON.stringify(payload));
+    });
+};
 
 function SubmitLibrary() {
     document.getElementById('LibrarySubmit').addEventListener('click', function(event){

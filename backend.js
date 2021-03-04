@@ -30,7 +30,7 @@ const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT
                         `
 ;
 
-const insertBook = 'INSERT INTO Books (title, authorID, patronID, libraryID, publicationDate) VALUES (?, ?, ?, ?, ?)';
+const insertBook = 'INSERT INTO Books (title, authorID, libraryID, publicationDate) VALUES (?, ?, ?, ?)';
 const insertLibary = 'INSERT INTO Libraries (name, state, city, street, zip) VALUES (?, ?, ?, ?, ?)';
 const insertPatron = 'INSERT INTO Patrons (firstName, lastName, state, city, street, zip, libraryID) VALUES (?, ?, ?, ?, ?, ?, ?)';
 const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
@@ -149,7 +149,55 @@ app.post('/insert',function(req,res,next){
   }
 
   // if book is being inserted
-  
+  else if (submit == 'Book') {
+    var {title, authorID, libraryID, publicationDate, genre1, genre2, genre3} = req.body;
+
+    console.log(title)
+    console.log(authorID)
+    console.log(libraryID)
+    console.log(publicationDate)
+    console.log(genre1)
+    console.log(genre2)
+    console.log(genre3)
+
+    if (title == '') {
+      title = null
+    }
+    if (authorID == '') {
+      authorID == null
+    }
+    if (libraryID == '') {
+      libraryID = null
+    }
+    if (publicationDate == '') {
+      publicationDate = null
+    }
+    if (genre1 == '') {
+      genre1 = null
+    }
+    if (genre2 == '') {
+      genre2 = null
+    }
+    if (genre3 == '') {
+      genre3 = null
+    }
+
+    console.log(title)
+    console.log(authorID)
+    console.log(libraryID)
+    console.log(publicationDate)
+    console.log(genre1)
+    console.log(genre2)
+    console.log(genre3)
+
+    mysql.pool.query(insertBook, [title, , authorID, libraryID, publicationDate], (err, result) => {
+      if(err){
+        next(err);
+        return;
+      }
+    })
+  }
+
 });
 
 //Update-delete view
