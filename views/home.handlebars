@@ -9,6 +9,7 @@
           <button type="button" id='bookButtonFilter' class="btn btn-secondary">Book Title</button>
           <button type="button" id='bookAuthorFilter' class="btn btn-secondary">Author</button>
           <button type="button" id='bookDateFilter' class="btn btn-secondary">Publication Date</button>
+          <button type="button" id='bookGenreFilter' class="btn btn-secondary">Genre</button>
           <button type="button" id='resetFilter' class="btn btn-secondary">Reset Filter</button>
     </div>
     <!-- Search Bar -->
@@ -39,50 +40,13 @@
             <tr>
               <td>{{this.bookID}}</td> 
               <td>{{this.title}}</td>
-	      <td>{{this.Genres}}</td>
+	            <td>{{this.Genres}}</td>
               <td>{{this.authorName}}</td>
               <td>{{this.publicationDate}}</td>
               <td>{{this.name}}</td>
               <td><button type="button" class="btn btn-primary">Update</button></td></td>
               <td><button type="button" class="btn btn-danger">Delete</button></td>
 
-                {{!-- <th scope="row">1</th>
-                <td>The Fellowship of the Ring</td>
-                <td>Fantasy</td>
-                <td></td>
-                <td></td>
-                <td>JRR Tolkien</td>
-                <td>1954</td>
-                <td>Middle-Earth</td>
-                <td>Y</td>
-                <td><button type="button" class="btn btn-primary">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>The Two Towers</td>
-                <td>Fantasy</td>
-                <td>Adventure</td>
-                <td></td>
-                <td>JRR Tolkien</td>
-                <td>1954</td>
-                <td>Middle-Earth</td>
-                <td>N</td>
-                <td><button type="button" class="btn btn-primary">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Return of the King</td>
-                <td>Fantasy</td>
-                <td>Adventure</td>
-                <td>Action</td>
-                <td>JRR Tolkien</td>
-                <td>1955</td>
-                <td>Middle-Earth</td>
-                <td>Y</td>
-                <td><button type="button" class="btn btn-primary">Update</button></td></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td> --}}
             </tr>
             {{/each}} 
             </tbody>
@@ -117,6 +81,31 @@
       }
       });
 
+
+      // Genres
+      if (document.getElementById('bookGenreFilter').onclick = function() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('bookFilter');
+        filter = input.value;
+        table = document.getElementById('tbody');
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+        console.log(tr.length)
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          // console.log(td)
+          txtValue = td.textContext || td.innerText;
+          // console.log(txtValue)
+          if (txtValue.toUpperCase().includes(filter.toUpperCase())) {
+            console.log(txtValue, 'here text log')
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = 'none';
+          } 
+        }
+      }
+      });
       // If we have clicked Button Author, then we are filtering on author, row 1   
 
       if (document.getElementById('bookAuthorFilter').onclick = function() {
@@ -128,7 +117,7 @@
 
         for (i = 0; i < tr.length; i++) {
         console.log(tr.length)
-        td = tr[i].getElementsByTagName("td")[5];
+        td = tr[i].getElementsByTagName("td")[3];
         if (td) {
           // console.log(td)
           txtValue = td.textContext || td.innerText;
