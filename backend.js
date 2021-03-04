@@ -81,7 +81,6 @@ app.post('/insert',function(req,res,next){
     if (description == '') {
       description = null
     }
-
     mysql.pool.query(insertGenre, [genreName, description], (err, result) => {
       if(err){
         next(err);
@@ -89,6 +88,40 @@ app.post('/insert',function(req,res,next){
       }
     })
   }
+  // if patron is being submitted
+  else if (submit == 'Patron') {
+    var {firstName, lastName, state, city, street, zip, libraryID} = req.body;
+
+    if (firstName == '') {
+      firstName = null
+    }
+    if (lastName == '') {
+      lastName = null
+    }
+    if (state == '') {
+      state = null
+    }
+    if (city == '') {
+      city = null
+    }
+    if (street == '') {
+      street = null
+    }
+    if (zip == '') {
+      zip = null
+    }
+    if (libraryID == '') {
+      libraryID = null
+    }
+    mysql.pool.query(insertPatron, [firstName, lastName, state, city, street, zip, libraryID], (err, result) => {
+      if(err){
+        next(err);
+        return;
+      }
+    })
+  }
+
+  // if library is being submitted
   
 });
 

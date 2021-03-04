@@ -1,6 +1,6 @@
 //document.addEventListener('DOMContentLoaded', SubmitBook)
 //document.addEventListener('DOMContentLoaded', SubmitLibrary)
-//document.addEventListener('DOMContentLoaded', SubmitPatron)
+document.addEventListener('DOMContentLoaded', SubmitPatron)
 document.addEventListener('DOMContentLoaded', SubmitGenre)
 document.addEventListener('DOMContentLoaded', SubmitAuthor)
 
@@ -26,11 +26,30 @@ const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
 //    });
 //};
 
-//function SubmitPatron() {
-//    document.getElementById('PatronSubmit').addEventListener('click', function(event){
-//        //skeleton code
-//    });
-//};
+function SubmitPatron() {
+    document.getElementById('PatronSubmit').addEventListener('click', function(event){
+        var req = new XMLHttpRequest();
+        var submit = 'Patron'
+        var firstName = document.getElementById('firstName').value
+        var lastName = document.getElementById('lastName').value
+        var state = document.getElementById('patronState').value
+        var city = document.getElementById('patronCity').value
+        var street = document.getElementById('patronStreet').value
+        var zip = document.getElementById('patronZip').value
+        var libraryID = document.getElementById('patronLibraryID').value
+        var payload = { submit: submit, firstName: firstName, lastName: lastName, state: state, city: city, street: street, zip: zip, libraryID: libraryID }
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load', function(){
+            if(req.status >= 200 && req.status < 400){
+                var response = JSON.parse(req.responseText);
+            } else{
+                console.log("error in network request: " + req.statusText);
+            }
+    });
+    req.send(JSON.stringify(payload));
+    });
+};
 
 function SubmitGenre() {
     document.getElementById('GenreSubmit').addEventListener('click', function(event){
