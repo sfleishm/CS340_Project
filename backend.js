@@ -181,7 +181,6 @@ app.post('/insert',function(req,res,next){
         return;
       }
       lastID = result.insertId;
-      console.log(lastID);
       mysql.pool.query(insertBooksGenres, [genre1, lastID], (err, result) => {
         if(err){
           next(err);
