@@ -35,6 +35,7 @@ const insertLibrary = 'INSERT INTO Libraries (name, state, city, street, zip) VA
 const insertPatron = 'INSERT INTO Patrons (firstName, lastName, state, city, street, zip, libraryID) VALUES (?, ?, ?, ?, ?, ?, ?)';
 const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
 const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
+const insertBooksGenres = 'INSERT INTO Books_Genres (genreID, bookID) Values (?, ?)'
 
 
 //Home View
@@ -179,6 +180,26 @@ app.post('/insert',function(req,res,next){
         next(err);
         return;
       }
+      lastID = result.insertId;
+      console.log(lastID);
+      mysql.pool.query(insertBooksGenres, [genre1, lastID], (err, result) => {
+        if(err){
+          next(err);
+          return;
+        }
+        mysql.pool.query(insertBooksGenres, [genre2, lastID], (err, result) => {
+          if(err){
+            next(err);
+            return;
+          }
+          mysql.pool.query(insertBooksGenres, [genre3, lastID], (err, result) => {
+            if (err){
+              next(err);
+              return;
+            }
+          })
+        })
+      })
     })
   }
 
