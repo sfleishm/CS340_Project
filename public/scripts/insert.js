@@ -1,5 +1,5 @@
 //document.addEventListener('DOMContentLoaded', SubmitBook)
-//document.addEventListener('DOMContentLoaded', SubmitLibrary)
+document.addEventListener('DOMContentLoaded', SubmitLibrary)
 document.addEventListener('DOMContentLoaded', SubmitPatron)
 document.addEventListener('DOMContentLoaded', SubmitGenre)
 document.addEventListener('DOMContentLoaded', SubmitAuthor)
@@ -20,11 +20,28 @@ const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
 //    });
 //};
 
-//function SubmitLibrary() {
-//    document.getElementById('LibrarySubmit').addEventListener('click', function(event){
-//        //skeleton code
-//    });
-//};
+function SubmitLibrary() {
+    document.getElementById('LibrarySubmit').addEventListener('click', function(event){
+        var req = new XMLHttpRequest();
+        var submit = 'Library'
+        var name = document.getElementById('libraryName').value
+        var state = document.getElementById('libraryState').value
+        var city = document.getElementById('libraryCity').value
+        var street = document.getElementById('libraryStreet').value
+        var zip = document.getElementById('libraryZip').value
+        var payload = { submit: submit, name: name, state: state, city: city, street: street, zip: zip }
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load', function(){
+            if(req.status >= 200 && req.status < 400){
+                var response = JSON.parse(req.responseText);
+            } else{
+                console.log("error in network request: " + req.statusText);
+            }
+        });
+    req.send(JSON.stringify(payload));
+    });
+};
 
 function SubmitPatron() {
     document.getElementById('PatronSubmit').addEventListener('click', function(event){
@@ -46,7 +63,7 @@ function SubmitPatron() {
             } else{
                 console.log("error in network request: " + req.statusText);
             }
-    });
+        });
     req.send(JSON.stringify(payload));
     });
 };
@@ -66,7 +83,7 @@ function SubmitGenre() {
             } else{
                 console.log("error in network request: " + req.statusText);
             }
-    });
+        });
     req.send(JSON.stringify(payload));
     });
 };
@@ -86,6 +103,6 @@ function SubmitAuthor() {
                 console.log("error in network request: " + req.statusText);
             }
         });
-        req.send(JSON.stringify(payload));
+    req.send(JSON.stringify(payload));
     });
 };

@@ -31,7 +31,7 @@ const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT
 ;
 
 const insertBook = 'INSERT INTO Books (title, authorID, patronID, libraryID, publicationDate) VALUES (?, ?, ?, ?, ?)';
-const insertLibary = 'INSERT INTO Libraries (name, street, state, city, zip) VALUES (?, ?, ?, ?, ?)';
+const insertLibary = 'INSERT INTO Libraries (name, state, city, street, zip) VALUES (?, ?, ?, ?, ?)';
 const insertPatron = 'INSERT INTO Patrons (firstName, lastName, state, city, street, zip, libraryID) VALUES (?, ?, ?, ?, ?, ?, ?)';
 const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
 const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
@@ -122,6 +122,33 @@ app.post('/insert',function(req,res,next){
   }
 
   // if library is being submitted
+  else if (submit == 'Library') {
+    var {name, state, city, street, zip} = req.body;
+
+    if (name == '') {
+      name = null
+    }
+    if (street == '') {
+      street = null
+    }
+    if (state == '') {
+      state = null
+    }
+    if (city == '') {
+      city = null
+    }
+    if (zip == '') {
+      zip = null
+    }
+    mysql.pool.query(insertLibary, [name, state, city, street, zip], (err, result) => {
+      if(err){
+        next(err);
+        return;
+      }
+    })
+  }
+
+  // if book is being inserted
   
 });
 
