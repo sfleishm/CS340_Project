@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', SubmitPatron)
 document.addEventListener('DOMContentLoaded', SubmitGenre)
 document.addEventListener('DOMContentLoaded', SubmitAuthor)
 
-const insertBook = 'INSERT INTO Books (title, authorID, patronID, libraryID, publicationDate) VALUES (?, ?, ?, ?, ?)';
+const insertBook = 'INSERT INTO Books (title, authorID, libraryID, publicationDate) VALUES (?, ?, ?, ?)';
 
 const insertLibary = 'INSERT INTO Libraries (name, street, state, city, zip) VALUES (?, ?, ?, ?, ?)';
 

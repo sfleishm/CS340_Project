@@ -31,7 +31,7 @@ const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT
 ;
 
 const insertBook = 'INSERT INTO Books (title, authorID, libraryID, publicationDate) VALUES (?, ?, ?, ?)';
-const insertLibary = 'INSERT INTO Libraries (name, state, city, street, zip) VALUES (?, ?, ?, ?, ?)';
+const insertLibrary = 'INSERT INTO Libraries (name, state, city, street, zip) VALUES (?, ?, ?, ?, ?)';
 const insertPatron = 'INSERT INTO Patrons (firstName, lastName, state, city, street, zip, libraryID) VALUES (?, ?, ?, ?, ?, ?, ?)';
 const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
 const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
@@ -140,7 +140,7 @@ app.post('/insert',function(req,res,next){
     if (zip == '') {
       zip = null
     }
-    mysql.pool.query(insertLibary, [name, state, city, street, zip], (err, result) => {
+    mysql.pool.query(insertLibrary, [name, state, city, street, zip], (err, result) => {
       if(err){
         next(err);
         return;
@@ -151,14 +151,6 @@ app.post('/insert',function(req,res,next){
   // if book is being inserted
   else if (submit == 'Book') {
     var {title, authorID, libraryID, publicationDate, genre1, genre2, genre3} = req.body;
-
-    console.log(title)
-    console.log(authorID)
-    console.log(libraryID)
-    console.log(publicationDate)
-    console.log(genre1)
-    console.log(genre2)
-    console.log(genre3)
 
     if (title == '') {
       title = null
@@ -182,15 +174,7 @@ app.post('/insert',function(req,res,next){
       genre3 = null
     }
 
-    console.log(title)
-    console.log(authorID)
-    console.log(libraryID)
-    console.log(publicationDate)
-    console.log(genre1)
-    console.log(genre2)
-    console.log(genre3)
-
-    mysql.pool.query(insertBook, [title, , authorID, libraryID, publicationDate], (err, result) => {
+    mysql.pool.query(insertBook, [title, authorID, libraryID, publicationDate], (err, result) => {
       if(err){
         next(err);
         return;
