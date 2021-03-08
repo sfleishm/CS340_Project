@@ -22,10 +22,10 @@ const selectLibraries = `SELECT * FROM Libraries`;
 const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT Genres.genreName ORDER BY Genres.genreName) as 'Genres', 
                         Authors.authorName, Books.publicationDate, Libraries.name
                         FROM Books 
-                        JOIN Books_Genres ON Books.bookID = Books_Genres.bookID
-                        JOIN Genres ON Books_Genres.genreID = Genres.genreID
-                        JOIN Authors ON Authors.authorID = Books.authorID
-                        JOIN Libraries ON Libraries.libraryID = Books.libraryID
+                        LEFT OUTER JOIN Books_Genres ON Books.bookID = Books_Genres.bookID
+                        LEFT OUTER JOIN Genres ON Books_Genres.genreID = Genres.genreID
+                        LEFT OUTER JOIN Authors ON Authors.authorID = Books.authorID
+                        LEFT OUTER JOIN Libraries ON Libraries.libraryID = Books.libraryID
                         GROUP BY Books.bookID
                         `
 ;
@@ -37,6 +37,21 @@ const insertGenre = 'INSERT INTO Genres (genreName, description) VALUES (?, ?)';
 const insertAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
 const insertBooksGenres = 'INSERT INTO Books_Genres (genreID, bookID) Values (?, ?)'
 
+const deleteAuthors = 'DELETE FROM Authors WHERE authorID=?';
+const deleteGenres = 'DELETE FROM Genres WHERE genreID=?';
+const deleteLibrary = 'DELETE FROM Libraries WHERE libraryID=?';
+const deletePatrons = 'DELETE FROM Patrons WHERE patronID=?';
+
+
+const getAuthorData = (res) => {
+  mysql.pool.query(getAuthorsQuery, (err, rows, fields) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.json({"rows":rows})
+  })
+}
 
 //Home View
 app.get('/home',function(req,res,next){
@@ -50,6 +65,8 @@ app.get('/home',function(req,res,next){
     res.render('home', context);
   })
 });
+
+//#region Insert View
 
 //Insert View
 app.get('/insert',function(req,res,next){
@@ -181,6 +198,7 @@ app.post('/insert',function(req,res,next){
         return;
       }
       lastID = result.insertId;
+      console.log(lastID);
       mysql.pool.query(insertBooksGenres, [genre1, lastID], (err, result) => {
         if(err){
           next(err);
@@ -203,6 +221,8 @@ app.post('/insert',function(req,res,next){
   }
 
 });
+
+//#endregion
 
 //Update-delete view
 app.get('/check-out-return',function(req,res,next){
@@ -265,6 +285,66 @@ app.get('/genres',function(req,res,next){
 app.post('/',function(req,res){
     getAllData(res);
   });
+
+//#region Deletes
+
+// Trying to delete an author
+app.delete('/authors', function(req,res,next) {
+  var context = {};
+  console.log('ewaoifj')
+  var { authorID } = req.body
+  mysql.pool.query(deleteAuthors, [authorID], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    ////location.reload();
+  });
+});
+
+// Deletes for Genres
+app.delete('/genres', function(req,res,next) {
+  var context = {};
+  console.log('delete to genres')
+  var { genreID } = req.body
+  mysql.pool.query(deleteGenres, [genreID], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    ////location.reload();
+  });
+});
+
+// Deletes for Libraries
+app.delete('/libraries', function(req,res,next) {
+  var context = {};
+  console.log('delete to libraries')
+  var { libraryID } = req.body
+  mysql.pool.query(deleteLibrary, [libraryID], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    ////location.reload();
+  });
+});
+
+// Deletes for Patrons
+app.delete('/patrons', function(req,res,next) {
+  var context = {};
+  console.log('delete to patrons')
+  var { patronID } = req.body
+  mysql.pool.query(deletePatrons, [patronID], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    ////location.reload();
+  });
+});
+
+//#endregion
 
 //delete
 app.delete('/',function(req,res,next){
