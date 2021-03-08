@@ -6,11 +6,10 @@
     </div>
     
     <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" id='bookButtonFilter' class="btn btn-secondary">Book Title</button>
-          <button type="button" id='bookAuthorFilter' class="btn btn-secondary">Author</button>
-          <button type="button" id='bookDateFilter' class="btn btn-secondary">Publication Date</button>
-          <button type="button" id='bookGenreFilter' class="btn btn-secondary">Genre</button>
-          <button type="button" id='resetFilter' class="btn btn-secondary">Reset Filter</button>
+          <input style='margin: 10px 5px 10px 20px' type="radio" id='bookButtonFilter' name="search" class="btn btn-secondary">Book Title</input>
+          <input style='margin: 10px 5px 10px 20px' type="radio" id='bookAuthorFilter' name="search" class="btn btn-secondary">Author</input>
+          <input style='margin: 10px 5px 10px 20px' type="radio" id='bookDateFilter' name="search" class="btn btn-secondary">Publication Date</input>
+          <input style='margin: 10px 5px 10px 20px ' type="radio" id='bookGenreFilter' name="search" class="btn btn-secondary">Genre</input>
     </div>
     <!-- Search Bar -->
     <div class="input-group ">
@@ -53,7 +52,7 @@
 
     function myFunction() {
       // If we have clicked Button BookTitle, then we want to filter row 0
-      if (document.getElementById('bookButtonFilter').onclick = function() {
+      if (document.getElementById('bookButtonFilter').checked) {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById('bookFilter');
         filter = input.value;
@@ -75,11 +74,11 @@
           } 
         }
       }
-      });
+      };
 
 
       // Genres
-      if (document.getElementById('bookGenreFilter').onclick = function() {
+      if (document.getElementById('bookGenreFilter').checked) {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById('bookFilter');
         filter = input.value;
@@ -101,10 +100,10 @@
           } 
         }
       }
-      });
+      };
       // If we have clicked Button Author, then we are filtering on author, row 1   
 
-      if (document.getElementById('bookAuthorFilter').onclick = function() {
+      if (document.getElementById('bookAuthorFilter').checked) {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById('bookFilter');
         filter = input.value;
@@ -126,9 +125,9 @@
           } 
         }
       }
-      });
+      };
 
-      if (document.getElementById('bookDateFilter').onclick = function() {
+      if (document.getElementById('bookDateFilter').checked) {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById('bookFilter');
         filter = input.value;
@@ -150,7 +149,7 @@
           } 
         }
       }
-      });
+      };
       
 
       if (document.getElementById('resetFilter').onclick = function() {
