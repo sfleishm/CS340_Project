@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', DeleteAuthor)
 const deleteAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
 console.log('hello')
 
-const baseUrl = `http://flip1.engr.oregonstate.edu:5231/patrons`
+const baseUrl = `http://flip1.engr.oregonstate.edu:5231/authors`
 
 const getData = async () => {
     var req = new XMLHttpRequest();
@@ -35,7 +35,7 @@ function DeleteAuthor() {
         var submit = 'Author'
         var payload = { authorID: authorID }
 
-        req.open('DELETE', 'http://flip1.engr.oregonstate.edu:5231/patrons', true);
+        req.open('DELETE', 'http://flip1.engr.oregonstate.edu:5231/authors', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function (){
             if(req.status >= 200 && req.status < 400){

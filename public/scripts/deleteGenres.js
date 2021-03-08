@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', DeleteGenres)
 
 console.log('hello genres delete')
 
-const baseUrl = `http://flip1.engr.oregonstate.edu:5231/patrons`
+const baseUrl = `http://flip1.engr.oregonstate.edu:5231/genres`
 
 // const getData = async () => {
 //     var req = new XMLHttpRequest();

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', DeleteLibrary)
 
 console.log('hello library delete')
 
-const baseUrl = `http://flip1.engr.oregonstate.edu:5231/patrons`
+const baseUrl = `http://flip1.engr.oregonstate.edu:5231/libraries`
 // const getData = async () => {
 //     var req = new XMLHttpRequest();
 //     console.log(req)
