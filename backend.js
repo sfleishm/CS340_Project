@@ -18,6 +18,8 @@ const getAuthorsQuery = 'SELECT authorID, authorName FROM Authors';
 const getGenresQuery = 'SELECT * FROM Genres';
 const getPatronsQuery = 'SELECT * FROM Patrons';
 const selectLibraries = `SELECT * FROM Libraries`;
+const getBooksQuery = 'SELECT * FROM Books';
+const getBooksGenresQuery = 'SELECT * FROM Books_Genres'
 
 const selectHome =      `SELECT Books.bookID, Books.title, GROUP_CONCAT(DISTINCT Genres.genreName ORDER BY Genres.genreName) as 'Genres', 
                         Authors.authorName, Books.publicationDate, Libraries.name
@@ -281,10 +283,29 @@ app.get('/genres',function(req,res,next){
   })
 });
 
-//insert
-app.post('/',function(req,res){
-    getAllData(res);
-  });
+app.get('/books',function(req,res,next){
+  var context = {};
+  mysql.pool.query(getBooksQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('books', context);
+  })
+});
+
+app.get('/books_genres',function(req,res,next){
+  var context = {};
+  mysql.pool.query(getBooksGenresQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('books_genres', context);
+  })
+});
 
 //#region Deletes
 
@@ -345,16 +366,6 @@ app.delete('/patrons', function(req,res,next) {
 });
 
 //#endregion
-
-//delete
-app.delete('/',function(req,res,next){
-    getAllData(res);
-  });
-
-//update
-app.put('/',function(req,res,next){
-    getAllData(res);
-  });
 
 app.use(function(req,res){
   res.status(404);
