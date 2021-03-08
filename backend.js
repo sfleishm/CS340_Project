@@ -55,6 +55,8 @@ const getAuthorData = (res) => {
   })
 }
 
+//#region Basic Routes
+
 //Home View
 app.get('/home',function(req,res,next){
   var context = {};
@@ -68,12 +70,94 @@ app.get('/home',function(req,res,next){
   })
 });
 
-//#region Insert View
-
-//Insert View
 app.get('/insert',function(req,res,next){
-    res.render('insert');
+  res.render('insert');
 });
+
+//Check-out-return view
+app.get('/check-out-return',function(req,res,next){
+  res.render('check-out-return');
+});
+
+// Authors
+app.get('/authors',function(req,res,next){
+var context = {};
+mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
+  if(err) {
+    next(err);
+    return;
+  }
+  context.results = rows;
+  res.render('authors', context);
+})
+});
+
+// Libraries
+app.get('/libraries',function(req,res,next){
+var context = {};
+mysql.pool.query(selectLibraries, function(err, rows, fields){
+  if(err) {
+    next(err);
+    return;
+  }
+  context.results = rows;
+  res.render('libraries', context);
+})
+});
+
+// Patrons 
+app.get('/patrons',function(req,res,next){
+var context = {};
+mysql.pool.query(getPatronsQuery, function(err, rows, fields){
+  if(err) {
+    next(err);
+    return;
+  }
+  context.results = rows;
+  res.render('patrons', context);
+})
+});
+
+// Genres
+app.get('/genres',function(req,res,next){
+var context = {};
+mysql.pool.query(getGenresQuery, function(err, rows, fields){
+  if(err) {
+    next(err);
+    return;
+  }
+  context.results = rows;
+  res.render('genres', context);
+})
+});
+
+app.get('/books',function(req,res,next){
+var context = {};
+mysql.pool.query(getBooksQuery, function(err, rows, fields){
+  if(err) {
+    next(err);
+    return;
+  }
+  context.results = rows;
+  res.render('books', context);
+})
+});
+
+app.get('/books_genres',function(req,res,next){
+var context = {};
+mysql.pool.query(getBooksGenresQuery, function(err, rows, fields){
+  if(err) {
+    next(err);
+    return;
+  }
+  context.results = rows;
+  res.render('books_genres', context);
+})
+});
+
+//#endregion
+
+//#region Inserts
 
 app.post('/insert',function(req,res,next){
 
@@ -226,87 +310,6 @@ app.post('/insert',function(req,res,next){
 
 //#endregion
 
-//Update-delete view
-app.get('/check-out-return',function(req,res,next){
-    res.render('check-out-return');
-});
-
-// Authors
-app.get('/authors',function(req,res,next){
-  var context = {};
-  mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
-    if(err) {
-      next(err);
-      return;
-    }
-    context.results = rows;
-    res.render('authors', context);
-  })
-});
-
-// Libraries
-app.get('/libraries',function(req,res,next){
-  var context = {};
-  mysql.pool.query(selectLibraries, function(err, rows, fields){
-    if(err) {
-      next(err);
-      return;
-    }
-    context.results = rows;
-    res.render('libraries', context);
-  })
-});
-
-// Patrons 
-app.get('/patrons',function(req,res,next){
-  var context = {};
-  mysql.pool.query(getPatronsQuery, function(err, rows, fields){
-    if(err) {
-      next(err);
-      return;
-    }
-    context.results = rows;
-    res.render('patrons', context);
-  })
-});
-
-// Genres
-app.get('/genres',function(req,res,next){
-  var context = {};
-  mysql.pool.query(getGenresQuery, function(err, rows, fields){
-    if(err) {
-      next(err);
-      return;
-    }
-    context.results = rows;
-    res.render('genres', context);
-  })
-});
-
-app.get('/books',function(req,res,next){
-  var context = {};
-  mysql.pool.query(getBooksQuery, function(err, rows, fields){
-    if(err) {
-      next(err);
-      return;
-    }
-    context.results = rows;
-    res.render('books', context);
-  })
-});
-
-app.get('/books_genres',function(req,res,next){
-  var context = {};
-  mysql.pool.query(getBooksGenresQuery, function(err, rows, fields){
-    if(err) {
-      next(err);
-      return;
-    }
-    context.results = rows;
-    res.render('books_genres', context);
-  })
-});
-
 //#region Deletes
 
 // Trying to delete an author
@@ -364,6 +367,12 @@ app.delete('/patrons', function(req,res,next) {
     ////location.reload();
   });
 });
+
+//#endregion
+
+//#region Updates
+
+
 
 //#endregion
 
