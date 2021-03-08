@@ -29,7 +29,7 @@ function DeleteGenres() {
         var submit = 'Genre'
         var payload = { genreID: genreID }
 
-        req.open('DELETE', 'http://flip3.engr.oregonstate.edu:8225/genres', true);
+        req.open('DELETE', baseUrl, true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function (){
             if(req.status >= 200 && req.status < 400){
