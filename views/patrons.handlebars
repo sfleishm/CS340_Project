@@ -35,16 +35,16 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-                <td>{{this.patronID}}</td>
-                <td>{{this.firstName}}</td>
-                <td>{{this.lastName}}</td>
-                <td>{{this.state}}</td>
-                <td>{{this.city}}</td>
-                <td>{{this.street}}</td>
-                <td>{{this.zip}}</td>
-                <td>{{this.libraryID}}</td>
-                <td><button type="button" class="btn btn-primary">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <td><input type="number" value='{{this.patronID}}' disabled></td>
+                <td><input type="text" value='{{this.firstName}}' disabled></td>
+                <td><input type="text" value='{{this.lastName}}' disabled></td>
+                <td><input type="text" value='{{this.state}}' disabled></td>
+                <td><input type="text" value='{{this.city}}' disabled></td>
+                <td><input type="text" value='{{this.street}}' disabled></td>
+                <td><input type="text" value='{{this.zip}}' disabled></td>
+                <td><input type="number" value='{{this.libraryID}}' disabled></td>
+                <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
+                <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
             {{/each}}
             </tbody>

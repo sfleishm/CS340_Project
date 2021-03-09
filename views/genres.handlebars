@@ -29,11 +29,11 @@
             <tbody id = 'tbody'>
             {{#each results}} 
             <tr>
-                <th>{{this.genreID}}</th>
-                <td>{{this.genreName}}</td>
-                <td>{{this.description}}</td>
-                <td><button type="button" class="btn btn-primary">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <th><input type="number" value='{{this.genreID}}' disabled></th>
+                <td><input type="text" value='{{this.genreName}}' disabled></td>
+                <td><input type="text" value='{{this.description}}' disabled></td>
+                <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
+                <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
             {{/each}} 
             </tbody>

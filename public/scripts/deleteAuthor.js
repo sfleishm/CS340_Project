@@ -1,7 +1,5 @@
-document.addEventListener('DOMContentLoaded', DeleteAuthor)
+document.addEventListener('DOMContentLoaded', tableDelegation)
 
-
-const deleteAuthor = 'INSERT INTO Authors (authorName) VALUES (?)';
 console.log('hello')
 
 const baseUrl = `http://flip1.engr.oregonstate.edu:5231/authors`
@@ -21,43 +19,40 @@ function refreshPage(){
     // history.go(0)
 } 
 
-let value = 0
-function DeleteAuthor() {
-    //var authorID = document.event.target.parentNode.parentNode.firstChild.nextSibling.innerHTML
-    //console.log(authorID)
-    //document.getElementById('DeleteAuthor').onclick =(function(event){
-    //document.addEventListener('onclick', function(event) {
-    document.querySelector('#tableID').onclick = async (event) => {
-        var authorID = event.target.parentNode.parentNode.firstChild.nextSibling.innerHTML
-        console.log(authorID)
+function tableDelegation() {
+	document.getElementById('tableID').addEventListener('click', function(event){
+		var target = event.target;
+		if (target.classList.contains("btn-edit")) {
+			UpdateAuthor(target);
+		} else if (target.classList.contains("btn-delete")) {
+			DeleteAuthor(target);
+		} else {
+			return;
+		}
+	})
+}
 
-        var req = new XMLHttpRequest();
-        var submit = 'Author'
-        var payload = { authorID: authorID }
+const DeleteAuthor = (target) => {
+    var row = target.parentNode.parentNode;
+    var id = row.firstElementChild.firstElementChild.value;
 
-        req.open('DELETE', 'http://flip1.engr.oregonstate.edu:5231/authors', true);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.addEventListener('load', function (){
-            if(req.status >= 200 && req.status < 400){
-                var response = JSON.parse(req.responseText);
-            } else{
-                console.log("error in network request: " + req.statusText);
-            }
-        });
-    value += 1
+    var req = new XMLHttpRequest();
+    var submit = 'Author'
+    var payload = { authorID: id }
+
+    req.open('DELETE', baseUrl, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function (){
+        if(req.status >= 200 && req.status < 400){
+            var response = JSON.parse(req.responseText);
+        } else{
+            console.log("error in network request: " + req.statusText);
+        }
+    });
     req.send(JSON.stringify(payload));
     refreshPage();
-    
-    
-    };
 };
 
+const UpdateAuthor = (target) => {
 
-
-// (async () => {
-//     console.log(value)
-//     let value = await DeleteAuthor();
-//     console.log(value)
-
-    
-// })();
+};

@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/scripts/deleteBooks.js"></script>
+
 <!-- Hello Part -->
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -30,14 +32,14 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-                <td>{{this.bookID}}</td> 
-                <td>{{this.title}}</td> 
-                <td>{{this.authorID}}</td> 
-                <td>{{this.patronID}}</td>
-                <td>{{this.libraryID}}</td>
-                <td>{{this.publicationDate}}</td>
-                <td><button type="button" class="btn btn-primary">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <td><input type="number" value='{{this.bookID}}' disabled></td> 
+                <td><input type="text" value='{{this.title}}' disabled></td> 
+                <td><input type="number" value='{{this.authorID}}' disabled></td> 
+                <td><input type="number" value='{{this.patronID}}' disabled></td>
+                <td><input type="number" value='{{this.libraryID}}' disabled></td>
+                <td><input type="text" value='{{this.publicationDate}}' disabled></td>
+                <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
+                <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
             {{/each}}
             </tbody>

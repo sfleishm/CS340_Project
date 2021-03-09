@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/scripts/deleteBooksGenres.js"></script>
+
 <!-- Hello Part -->
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -18,7 +20,6 @@
             <tr>
                 <th scope="col">Book ID</th>
                 <th scope="col">Genre ID</th>
-                <th scope="col">Update Row</th>
                 <th scope="col">Delete Row</th>
 
             </tr>
@@ -26,10 +27,9 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-                <td>{{this.bookID}}</td> 
-                <td>{{this.genreID}}</td> 
-                <td><button type="button" class="btn btn-primary">Update</button></td>
-                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                <td><input type="number" value='{{this.bookID}}' disabled></td> 
+                <td><input type="number" value='{{this.genreID}}' disabled></td> 
+                <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
             {{/each}}
             </tbody>

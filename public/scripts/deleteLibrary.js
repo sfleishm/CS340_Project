@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', DeleteLibrary)
+document.addEventListener('DOMContentLoaded', tableDelegation)
 
 console.log('hello library delete')
 
@@ -18,29 +18,40 @@ function refreshPage(){
     // history.go(0)
 } 
 
-let value = 0
-function DeleteLibrary() {
-    document.querySelector('#tableID').onclick = async (event) => {
-        var libraryID = event.target.parentNode.parentNode.firstChild.nextSibling.innerHTML
-        console.log(libraryID)
+function tableDelegation() {
+	document.getElementById('tableID').addEventListener('click', function(event){
+		var target = event.target;
+		if (target.classList.contains("btn-edit")) {
+			UpdateLibrary(target);
+		} else if (target.classList.contains("btn-delete")) {
+			DeleteLibrary(target);
+		} else {
+			return;
+		}
+	})
+};
 
-        var req = new XMLHttpRequest();
-        var submit = 'Genre'
-        var payload = { libraryID: libraryID }
+const DeleteLibrary = (target) => {
+    var row = target.parentNode.parentNode;
+    var id = row.firstElementChild.firstElementChild.value;
 
-        req.open('DELETE', baseUrl, true);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.addEventListener('load', function (){
-            if(req.status >= 200 && req.status < 400){
-                var response = JSON.parse(req.responseText);
-            } else{
-                console.log("error in network request: " + req.statusText);
-            }
-        });
-    value += 1
+    var req = new XMLHttpRequest();
+    var submit = 'Library'
+    var payload = { libraryID: id }
+
+    req.open('DELETE', baseUrl, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function (){
+        if(req.status >= 200 && req.status < 400){
+            var response = JSON.parse(req.responseText);
+        } else{
+            console.log("error in network request: " + req.statusText);
+        }
+    });
     req.send(JSON.stringify(payload));
     refreshPage();
-    
-    
-    };
+};
+
+const UpdateLibrary = (target) => {
+
 };

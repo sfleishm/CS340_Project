@@ -58,8 +58,8 @@ CREATE TABLE Genres(
 CREATE TABLE Books_Genres(
     genreID     int             , 
     bookID      int             ,
-    FOREIGN KEY (genreID)   REFERENCES Genres(genreID) ON DELETE SET NULL,
-    FOREIGN KEY (bookID)    REFERENCES Books(bookID) ON DELETE SET NULL
+    FOREIGN KEY (genreID)   REFERENCES Genres(genreID) ON DELETE CASCADE,
+    FOREIGN KEY (bookID)    REFERENCES Books(bookID) ON DELETE CASCADE
 );
 
 

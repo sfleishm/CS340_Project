@@ -29,15 +29,15 @@
             <tbody id = 'tbody'>
             {{#each results}} 
             <tr>
-              <td>{{this.authorID}}</td> 
-              <td>{{this.authorName}}</td> 
+              <td><input type="number" value='{{this.authorID}}' disabled></td> 
+              <td><input type="text" value='{{this.authorName}}' disabled></td> 
               {{!-- <td><button onclick="deletePerson({{id}})">Delete</button></td>
               <td><a href="/people/{{id}}">Update</a></td> --}}
                 {{!-- <th scope="row">1</th>
                 <td>JRR</td>
                 <td>Tolkien</td> --}}
-              <td><button type="button" class="btn btn-primary">Update</button></td>
-              <td><button type="button" class="btn btn-danger">Delete</button></td>
+              <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
+              <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
              {{/each}} 
             </tbody>

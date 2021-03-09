@@ -43,6 +43,8 @@ const deleteAuthors = 'DELETE FROM Authors WHERE authorID=?';
 const deleteGenres = 'DELETE FROM Genres WHERE genreID=?';
 const deleteLibrary = 'DELETE FROM Libraries WHERE libraryID=?';
 const deletePatrons = 'DELETE FROM Patrons WHERE patronID=?';
+const deleteBook = 'DELETE FROM Books WHERE bookID=?';
+const deleteBookGenre = 'DELETE FROM Books_Genres WHERE bookID=? AND genreID=?';
 
 
 const getAuthorData = (res) => {
@@ -66,6 +68,43 @@ app.get('/home',function(req,res,next){
       return;
     }
     context.results = rows;
+
+    for (var n = 0; n < context.results.length; ++n) {
+      dateList = context.results[n].publicationDate.toDateString();
+      dateList = dateList.split(' ');
+      var year = dateList[3]
+      var month = dateList[1]
+      var day = dateList[2]
+      if (month == "Jan") {
+        month = "01";
+      } else if (month == "Feb") {
+        month = "02";
+      } else if (month == "Mar") {
+        month = "03";
+      } else if (month == "Apr") {
+        month = "04";
+      } else if (month == "May") {
+        month = "05";
+      } else if (month == "Jun") {
+        month = "06";
+      } else if (month == "Jul") {
+        month = "07";
+      } else if (month == "Aug") {
+        month = "08";
+      } else if (month == "Sep") {
+        month = "09";
+      } else if (month == "Oct") {
+        month = "10";
+      } else if (month == "Nov") {
+        month = "11";
+      } else if (month == "Dec") {
+        month = "12";
+      }
+      
+      formattedDate = year + "-" + month + "-" + day
+      context.results[n].publicationDate = formattedDate
+    }
+    
     res.render('home', context);
   })
 });
@@ -139,6 +178,43 @@ mysql.pool.query(getBooksQuery, function(err, rows, fields){
     return;
   }
   context.results = rows;
+
+  for (var n = 0; n < context.results.length; ++n) {
+    dateList = context.results[n].publicationDate.toDateString();
+    dateList = dateList.split(' ');
+    var year = dateList[3]
+    var month = dateList[1]
+    var day = dateList[2]
+    if (month == "Jan") {
+      month = "01";
+    } else if (month == "Feb") {
+      month = "02";
+    } else if (month == "Mar") {
+      month = "03";
+    } else if (month == "Apr") {
+      month = "04";
+    } else if (month == "May") {
+      month = "05";
+    } else if (month == "Jun") {
+      month = "06";
+    } else if (month == "Jul") {
+      month = "07";
+    } else if (month == "Aug") {
+      month = "08";
+    } else if (month == "Sep") {
+      month = "09";
+    } else if (month == "Oct") {
+      month = "10";
+    } else if (month == "Nov") {
+      month = "11";
+    } else if (month == "Dec") {
+      month = "12";
+    }
+    
+    formattedDate = year + "-" + month + "-" + day
+    context.results[n].publicationDate = formattedDate
+  }
+
   res.render('books', context);
 })
 });
@@ -360,6 +436,40 @@ app.delete('/patrons', function(req,res,next) {
   console.log('delete to patrons')
   var { patronID } = req.body
   mysql.pool.query(deletePatrons, [patronID], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    ////location.reload();
+  });
+});
+
+// Deletes for Books
+app.delete('/books', function(req,res,next) {
+  var context = {};
+  console.log('delete to books')
+  var { bookID } = req.body
+  mysql.pool.query(deleteBook, [bookID], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    ////location.reload();
+  });
+});
+
+app.delete('/books_genres', function(req,res,next) {
+  var context = {};
+  console.log('delete to books')
+  var { bookID, genreID } = req.body
+  if (bookID == '') {
+    bookID = null
+  }
+  if (genreID == '') {
+    genreID = null
+  }
+
+  mysql.pool.query(deleteBookGenre, [bookID, genreID], function(err, result){
     if(err){
       next(err);
       return;
