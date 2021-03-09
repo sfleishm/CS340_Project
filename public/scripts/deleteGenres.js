@@ -22,15 +22,17 @@ function refreshPage(){
 function tableDelegation() {
 	document.getElementById('tableID').addEventListener('click', function(event){
 		var target = event.target;
-		if (target.classList.contains("btn-edit")) {
+		if (target.classList.contains("btn-confirm")) {
 			UpdateGenre(target);
 		} else if (target.classList.contains("btn-delete")) {
 			DeleteGenre(target);
-		} else {
+		} else if (target.classList.contains("btn-edit")) {
+			EditGenre(target);
+        } else {
 			return;
 		}
 	})
-};
+}
 
 const DeleteGenre = (target) => {
     var row = target.parentNode.parentNode;
@@ -54,5 +56,44 @@ const DeleteGenre = (target) => {
 };
 
 const UpdateGenre = (target) => {
+    var row = target.parentNode.parentNode;
 
+    var idLoc = row.firstElementChild.firstElementChild;
+    var id = idLoc.value;
+    var genreNameLoc = row.firstElementChild.nextElementSibling.firstElementChild;
+    var genreName = genreNameLoc.value;
+    var descriptionLoc = genreNameLoc.parentNode.nextElementSibling.firstElementChild;
+    var description = descriptionLoc.value;
+    console.log(genreName);
+    console.log(description);
+
+    genreNameLoc.disabled = true;
+    descriptionLoc.disabled = true;
+
+    target.classList.remove("btn-confirm");
+    target.textContent = "Update";
+
+    var req = new XMLHttpRequest();
+    var payload = { genreID: id, genreName: genreName, description: description }
+    req.open('PUT', baseUrl, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function(){
+		if(req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText);
+			makeTable(response);
+		} else {
+			console.log("Error in network request: " + req.statusText);
+		}});
+	req.send(JSON.stringify(payload));
+};
+
+const EditGenre = (target) => {
+    var row = target.parentNode.parentNode;
+    var genreName = row.firstElementChild.nextElementSibling.firstElementChild;
+    var description = genreName.parentNode.nextElementSibling.firstElementChild;
+    genreName.disabled = false;
+    description.disabled = false;
+
+    target.textContent = "Confirm"
+    target.classList.add("btn-confirm");
 };

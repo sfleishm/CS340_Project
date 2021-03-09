@@ -46,6 +46,12 @@ const deletePatrons = 'DELETE FROM Patrons WHERE patronID=?';
 const deleteBook = 'DELETE FROM Books WHERE bookID=?';
 const deleteBookGenre = 'DELETE FROM Books_Genres WHERE bookID=? AND genreID=?';
 
+const updateAuthor = 'UPDATE Authors SET authorName=? WHERE authorID=?';
+const updateLibrary = 'UPDATE Libraries SET name=?, state=?, city=?, street=?, zip=? WHERE libraryID=?';
+const updatePatron = 'UPDATE Patrons SET firstName=?, lastName=?, state=?, city=?, street=?, zip=?, libraryID=? WHERE patronID=?';
+const updateGenre = 'UPDATE Genres SET genreName=?, description=? WHERE genreID=?';
+const updateBook = 'UPDATE Books SET title=?, authorID=?, patronID=?, libraryID=?, publicationDate=? WHERE bookID=?';
+
 
 const getAuthorData = (res) => {
   mysql.pool.query(getAuthorsQuery, (err, rows, fields) => {
@@ -482,7 +488,142 @@ app.delete('/books_genres', function(req,res,next) {
 
 //#region Updates
 
+//update Authors
+app.put('/authors',function(req,res,next){
+  var context = {};
+  var { authorName, authorID} = req.body;
+  if (authorName == "") {
+    authorName = NULL;
+  }
 
+  mysql.pool.query(updateAuthor,
+    [authorName, authorID],
+    (err, result) => {
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+//update Patrons
+app.put('/patrons',function(req,res,next){
+  var context = {};
+  var { firstName, lastName, state, city, street, zip, libraryID, patronID} = req.body;
+  if (firstName == "") {
+    firstName = NULL;
+  }
+  if (lastName == "") {
+    lastName = NULL;
+  }
+  if (state == "") {
+    state = NULL;
+  }
+  if (city == "") {
+    city = NULL;
+  }
+  if (street == "") {
+    street = NULL;
+  }
+  if (zip == "") {
+    zip = NULL;
+  }
+  if (libraryID == "") {
+    libraryID = NULL;
+  }
+
+  mysql.pool.query(updatePatron,
+    [firstName, lastName, state, city, street, zip, libraryID, patronID],
+    (err, result) => {
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+//update Libraries
+app.put('/libraries',function(req,res,next){
+  var context = {};
+  var { libraryID, name, state, city, street, zip } = req.body;
+  if (name == '') {
+    name = null
+  }
+  if (street == '') {
+    street = null
+  }
+  if (state == '') {
+    state = null
+  }
+  if (city == '') {
+    city = null
+  }
+  if (zip == '') {
+    zip = null
+  }
+
+
+  mysql.pool.query(updateLibrary,
+    [name, state, city, street, zip, libraryID],
+    (err, result) => {
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+//update Genres
+app.put('/genres',function(req,res,next){
+  var context = {};
+  var { genreName, description, genreID} = req.body;
+  if (genreName == '') {
+    genreName = null
+  }
+  if (description == '') {
+    description = null
+  }
+
+  mysql.pool.query(updateGenre,
+    [genreName, description, genreID],
+    (err, result) => {
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
+
+//update Books
+app.put('/books',function(req,res,next){
+  var context = {};
+  var { title, authorID, patronID, libraryID, publicationDate, bookID } = req.body;
+
+  if (title == '') {
+    title = null
+  }
+  if (authorID == '') {
+    authorID == null
+  }
+  if (patronID == '') {
+    patronID = null
+  }
+  if (libraryID == '') {
+    libraryID = null
+  }
+  if (publicationDate == '') {
+    publicationDate = null
+  }
+
+  mysql.pool.query(updateBook,
+    [title, authorID, patronID, libraryID, publicationDate, bookID],
+    (err, result) => {
+    if(err){
+      next(err);
+      return;
+    }
+  });
+});
 
 //#endregion
 

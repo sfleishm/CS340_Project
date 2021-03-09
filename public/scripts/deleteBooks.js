@@ -22,11 +22,13 @@ function refreshPage(){
 function tableDelegation() {
 	document.getElementById('tableID').addEventListener('click', function(event){
 		var target = event.target;
-		if (target.classList.contains("btn-edit")) {
+		if (target.classList.contains("btn-confirm")) {
 			UpdateBook(target);
 		} else if (target.classList.contains("btn-delete")) {
 			DeleteBook(target);
-		} else {
+		} else if (target.classList.contains("btn-edit")) {
+			EditBook(target);
+        } else {
 			return;
 		}
 	})
@@ -55,5 +57,63 @@ const DeleteBook = (target) => {
 };
 
 const UpdateBook = (target) => {
+    var row = target.parentNode.parentNode;
 
+    var idLoc = row.firstElementChild.firstElementChild;
+    var id = idLoc.value;
+    var titleLoc = row.firstElementChild.nextElementSibling.firstElementChild;
+    var title = titleLoc.value;
+    var authorIDLoc =titleLoc.parentNode.nextElementSibling.firstElementChild;
+    var authorID = authorIDLoc.value;
+    var patronIDLoc = authorIDLoc.parentNode.nextElementSibling.firstElementChild;
+    var patronID = patronIDLoc.value;
+    var libraryIDLoc = patronIDLoc.parentNode.nextElementSibling.firstElementChild;
+    var libraryID = libraryIDLoc.value;
+    var publicationDateLoc = libraryIDLoc.parentNode.nextElementSibling.firstElementChild;
+    var publicationDate = publicationDateLoc.value;
+    console.log(title);
+    console.log(authorID);
+    console.log(patronID);
+    console.log(libraryID);
+    console.log(publicationDate);
+    console.log(id)
+
+    titleLoc.disabled = true;
+    authorIDLoc.disabled = true;
+    patronIDLoc.disabled = true;
+    libraryIDLoc.disabled = true;
+    publicationDateLoc.disabled = true;
+
+    target.classList.remove("btn-confirm");
+    target.textContent = "Update";
+
+    var req = new XMLHttpRequest();
+    var payload = { bookID: id, title: title, authorID: authorID, patronID: patronID, libraryID: libraryID, publicationDate: publicationDate }
+    req.open('PUT', baseUrl, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function(){
+		if(req.status >= 200 && req.status < 400){
+			var response = JSON.parse(req.responseText);
+			makeTable(response);
+		} else {
+			console.log("Error in network request: " + req.statusText);
+		}});
+	req.send(JSON.stringify(payload));
+};
+
+const EditBook = (target) => {
+    var row = target.parentNode.parentNode;
+    var title = row.firstElementChild.nextElementSibling.firstElementChild;
+    var authorID = title.parentNode.nextElementSibling.firstElementChild;
+    var patronID = authorID.parentNode.nextElementSibling.firstElementChild;
+    var libraryID = patronID.parentNode.nextElementSibling.firstElementChild;
+    var publicationDate = libraryID.parentNode.nextElementSibling.firstElementChild;
+    title.disabled = false;
+    authorID.disabled = false;
+    patronID.disabled = false;
+    libraryID.disabled = false;
+    publicationDate.disabled = false;
+
+    target.textContent = "Confirm"
+    target.classList.add("btn-confirm");
 };
