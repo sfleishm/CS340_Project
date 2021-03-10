@@ -13,7 +13,7 @@
     </div>
     <!-- Search Bar -->
     <div class="input-group ">
-        <input type="search" class="form-control rounded" onkeyup="myFunction()" id='bookFilter' placeholder="Search by Title" aria-label="Search"
+        <input type="search" class="form-control rounded" onkeyup="myFunction()" id='bookFilter' placeholder="Search" aria-label="Search"
             aria-describedby="search-addon" />
         <button type="button" class="btn btn-outline-primary">search</button>
     </div>
@@ -136,7 +136,7 @@
 
         for (i = 0; i < tr.length; i++) {
         console.log(tr.length)
-        td = tr[i].getElementsByTagName("td")[6];
+        td = tr[i].getElementsByTagName("td")[4];
         if (td) {
           // console.log(td)
           txtValue = td.textContext || td.innerText;
@@ -150,23 +150,6 @@
         }
       }
       };
-      
-
-      if (document.getElementById('resetFilter').onclick = function() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById('bookFilter');
-        filter = input.value;
-        table = document.getElementById('tbody');
-        tr = table.getElementsByTagName("tr");
-
-        for (i = 0; i < tr.length; i++) {
-        console.log(tr.length)
-        tr[i].style.display = "";
-        
-        }
-      });
-      
-    
     }
     </script>
     

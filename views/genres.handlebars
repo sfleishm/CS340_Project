@@ -67,7 +67,7 @@
           td = tr[i].getElementsByTagName("td")[0];
           if (td) {
             // console.log(td)
-            txtValue = td.textContext || td.innerText;
+            txtValue = td.firstElementChild.value || td.innerText;
             // console.log(txtValue)
             if (txtValue.toUpperCase().includes(filter.toUpperCase())) {
               console.log(txtValue, 'here text log')
