@@ -32,11 +32,11 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-                <td><input type="number" value='{{this.bookID}}' disabled></td> 
+                <td><input type="number" value='{{this.bookID}}' class='id' disabled></td> 
                 <td><input type="text" value='{{this.title}}' disabled></td> 
-                <td><input type="number" value='{{this.authorID}}' disabled></td> 
-                <td><input type="number" value='{{this.patronID}}' disabled></td>
-                <td><input type="number" value='{{this.libraryID}}' disabled></td>
+                <td><input type="number" value='{{this.authorID}}' class='id' disabled></td> 
+                <td><input type="number" value='{{this.patronID}}' class='id' disabled></td>
+                <td><input type="number" value='{{this.libraryID}}' class='id' disabled></td>
                 <td><input type="text" value='{{this.publicationDate}}' disabled></td>
                 <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
                 <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>

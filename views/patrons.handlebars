@@ -35,14 +35,14 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-                <td><input type="number" value='{{this.patronID}}' disabled></td>
-                <td><input type="text" value='{{this.firstName}}' disabled></td>
-                <td><input type="text" value='{{this.lastName}}' disabled></td>
-                <td><input type="text" value='{{this.state}}' disabled></td>
-                <td><input type="text" value='{{this.city}}' disabled></td>
-                <td><input type="text" value='{{this.street}}' disabled></td>
-                <td><input type="text" value='{{this.zip}}' disabled></td>
-                <td><input type="number" value='{{this.libraryID}}' disabled></td>
+                <td><input type="number" value='{{this.patronID}}' class='id' disabled></td>
+                <td><input type="text" value='{{this.firstName}}' class='name' disabled></td>
+                <td><input type="text" value='{{this.lastName}}' class='name' disabled></td>
+                <td><input type="text" value='{{this.state}}' class='state' disabled></td>
+                <td><input type="text" value='{{this.city}}' class='state' disabled></td>
+                <td><input type="text" value='{{this.street}}' class='street' disabled></td>
+                <td><input type="text" value='{{this.zip}}' class='zip' disabled></td>
+                <td><input type="number" value='{{this.libraryID}}' class='id' disabled></td>
                 <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
                 <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>

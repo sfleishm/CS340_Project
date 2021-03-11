@@ -27,8 +27,8 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-                <td><input type="number" value='{{this.bookID}}' disabled></td> 
-                <td><input type="number" value='{{this.genreID}}' disabled></td> 
+                <td><input type="number" value='{{this.bookID}}' class='id' disabled></td> 
+                <td><input type="number" value='{{this.genreID}}' class='id' disabled></td> 
                 <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
             {{/each}}

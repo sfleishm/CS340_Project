@@ -5,3 +5,23 @@
 #tableID {
     margin-top: 50px;
 }
+
+.id {
+    width: 50px;
+}
+
+.zip {
+    width: 75px;
+}
+
+.state {
+    width: 75px;
+}
+
+.street {
+    width: 125px;
+}
+
+.name {
+    width: 100px;
+}
