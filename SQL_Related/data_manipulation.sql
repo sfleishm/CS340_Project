@@ -42,28 +42,28 @@ DELETE FROM Books_Genres WHERE bookID=?;
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Books Insert
-INSERT INTO Books (title, authorID, patronID, libraryID, publicationDate)
-VALUES (:titleInput, :authorIDInput, :patronIDInput, :libraryIDInput, :publicationDateInput);
+INSERT INTO Books (title, authorID, libraryID, publicationDate)
+VALUES (?, ?, ?, ?);
 
 -- Authors Insert
 INSERT INTO Authors (authorName)
-VALUES (:authorNameInput);
+VALUES (?);
 
 -- Genres Insert
 INSERT INTO Genres (genreName, description)
-VALUES (:genreNameInput, :descriptionInput);
+VALUES (?, ?);
 
 -- Patrons Insert
 INSERT INTO Patrons (firstName, lastName, state, city, street, zip, libraryID)
-VALUES (:firstNameInput, :lastNameInput, :stateInput, :cityInput, :streetInput, :zipInput, :libraryIDInput);
+VALUES (?, ?, ?, ?, ?, ?, ?);
 
 -- Libraries Insert
 INSERT INTO Libraries (name, street, state, city, zip)
-VALUES (:nameInput, :streetInput, :stateInput, :cityInput, :zipInput);
+VALUES (?, ?, ?, ?, ?);
 
 -- Books_Genres Insert
 INSERT INTO Books_Genres (genreID, bookID)
-VALUES (:genreIDInput, :bookIDInput);
+VALUES (?, ?);
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
