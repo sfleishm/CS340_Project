@@ -116,7 +116,33 @@ app.get('/home',function(req,res,next){
 });
 
 app.get('/insert',function(req,res,next){
-  res.render('insert');
+  var context = {};
+  mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.authors = rows;
+    // console.log(context.results )
+  })
+  mysql.pool.query(selectLibraries, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.libs = rows;
+    // console.log(context )
+  })
+  mysql.pool.query(getGenresQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.genres = rows;
+    // console.log(context )
+    res.render('insert', context);
+  })
+  
 });
 
 //Check-out-return view
@@ -244,6 +270,7 @@ mysql.pool.query(getBooksGenresQuery, function(err, rows, fields){
 app.post('/insert',function(req,res,next){
 
   var {submit} = req.body;
+
   // if author is being submitted
   if (submit == 'Author') {
     var {authorName} = req.body;

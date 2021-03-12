@@ -12,14 +12,44 @@ h1 {padding-left: 10px}
 <form id="booksInsert"> 
     <input type="text" id = "title" name="title" placeholder="Book Title">
     <input type="date" id = "publicationDate" name="publicationDate" value="YYYY-MM-DD">
-    <input type="number" id = "authorID" name="authorID" placeholder="Which Author is this Book Associated With">
-    <input type="number" id = "libraryID" name="libraryID" placeholder="Which Library is this Book Associated With">
-    <input type="number" id = "genre1" name="genre1" placeholder="1st Genre">
-    <input type="number" id = "genre2" name="genre2" placeholder="2nd Genre">
-    <input type="number" id = "genre3" name="genre3" placeholder="3rd Genre">
+    Select Author : <select name="Author" id="AuthorDropDown_Books">
+        
+        {{#each authors}}
+        <option value="{{this.authorID}}">{{this.authorName}}</option>
+        {{/each}}
+    </select>
+    
+    Select Library : <select name="Library" id="LibraryDropDown_Books">
+        
+        {{#each libs}}
+        <option value="{{this.libraryID}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+
+    Select genre : <select name="genre" id="genreDropDown_Books1">
+        
+        {{#each genres}}
+        <option value="{{this.genreID}}">{{this.genreName}}</option>
+        {{/each}}
+    </select>
+
+    Select genre : <select name="genre" id="genreDropDown_Books2">
+        
+        {{#each genres}}
+        <option value="{{this.genreID}}">{{this.genreName}}</option>
+        {{/each}}
+    </select>
+
+    Select genre : <select name="genre" id="genreDropDown_Books3">
+        
+        {{#each genres}}
+        <option value="{{this.genreID}}">{{this.genreName}}</option>
+        {{/each}}
+    </select>
     
     <input id="BookSubmit" type="submit" value="Submit">
 </form>
+
 
 {{!-- Insert Into Libraries --}}
 <h1>Add Entry to Libraries</h1>
@@ -48,7 +78,12 @@ h1 {padding-left: 10px}
     <input type="text" id = "patronStreet" name="patronStreet" placeholder="Patron Street">
     <input type="text" id = "patronZip" name="patronZip" placeholder="Patron Zip">
 
-    <input type="number" id = "patronLibraryID" name="patronLibraryID" placeholder="Which Library is this Patron Associated With">
+    Select Library : <select name="Library" id="LibraryDropDown_Patron">
+        
+        {{#each libs}}
+        <option  id = "patronLibraryID" value="{{this.libraryID}}">{{this.name}}</option>
+        {{/each}}
+    </select>
 
     <input id="PatronSubmit" type="submit" value="Submit">
 </form>

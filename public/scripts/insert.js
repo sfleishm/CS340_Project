@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', SubmitPatron)
 document.addEventListener('DOMContentLoaded', SubmitGenre)
 document.addEventListener('DOMContentLoaded', SubmitAuthor)
 
+
 const insertBook = 'INSERT INTO Books (title, authorID, libraryID, publicationDate) VALUES (?, ?, ?, ?)';
 
 const insertLibary = 'INSERT INTO Libraries (name, street, state, city, zip) VALUES (?, ?, ?, ?, ?)';
@@ -19,12 +20,23 @@ function SubmitBook() {
         var req = new XMLHttpRequest();
         var submit = 'Book'
         var title = document.getElementById('title').value
-        var authorID = document.getElementById('authorID').value
-        var libraryID = document.getElementById('libraryID').value
+        // Get Author Dropdown         // https://stackoverflow.com/questions/3301688/how-do-you-get-the-currently-selected-option-in-a-select-via-javascript
+        var authorID = document.getElementById('AuthorDropDown_Books')
+        authorID = authorID.options[authorID.selectedIndex].value
+        // Get Library Dropdown
+        var libraryID = document.getElementById('LibraryDropDown_Books');
+        libraryID = libraryID.options[libraryID.selectedIndex].value
         var publicationDate = document.getElementById('publicationDate').value
-        var genre1 = document.getElementById('genre1').value
-        var genre2 = document.getElementById('genre2').value
-        var genre3 = document.getElementById('genre3').value
+        // Get Genre1 dropdown
+        var genre1 = document.getElementById('genreDropDown_Books1')
+        genre1 = genre1.options[genre1.selectedIndex].value
+        // Get Genre2 dropdown
+        var genre2 = document.getElementById('genreDropDown_Books2')
+        genre2 = genre2.options[genre2.selectedIndex].value
+        // Get Genre3 dropdown
+        var genre3 = document.getElementById('genreDropDown_Books3')
+        genre3 = genre3.options[genre3.selectedIndex].value
+
         var payload = 
             { submit: submit,
               title: title,
@@ -34,7 +46,7 @@ function SubmitBook() {
               genre1: genre1,
               genre2: genre2,
               genre3: genre3 }
-        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -57,7 +69,7 @@ function SubmitLibrary() {
         var street = document.getElementById('libraryStreet').value
         var zip = document.getElementById('libraryZip').value
         var payload = { submit: submit, name: name, state: state, city: city, street: street, zip: zip }
-        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -80,9 +92,14 @@ function SubmitPatron() {
         var city = document.getElementById('patronCity').value
         var street = document.getElementById('patronStreet').value
         var zip = document.getElementById('patronZip').value
-        var libraryID = document.getElementById('patronLibraryID').value
+        var libraryID = document.getElementById('LibraryDropDown_Patron');
+        libraryID = libraryID.options[libraryID.selectedIndex].value
+        // alert(libraryID)
+        // https://stackoverflow.com/questions/3301688/how-do-you-get-the-currently-selected-option-in-a-select-via-javascript
+
+        
         var payload = { submit: submit, firstName: firstName, lastName: lastName, state: state, city: city, street: street, zip: zip, libraryID: libraryID }
-        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -102,7 +119,7 @@ function SubmitGenre() {
         var genreName = document.getElementById('genreName').value
         var description = document.getElementById('genreDescription').value
         var payload = { submit: submit, genreName: genreName, description: description }
-        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -121,7 +138,7 @@ function SubmitAuthor() {
         var submit = 'Author'
         var name = document.getElementById('authorName').value
         var payload = { submit: submit, authorName: name }
-        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
+        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -133,3 +150,4 @@ function SubmitAuthor() {
     req.send(JSON.stringify(payload));
     });
 };
+
