@@ -3,17 +3,9 @@ document.addEventListener('DOMContentLoaded', tableDelegation)
 console.log('hello library delete')
 
 const baseUrl = `http://flip1.engr.oregonstate.edu:5231/libraries`
-// const getData = async () => {
-//     var req = new XMLHttpRequest();
-//     console.log(req)
-//     req.open('GET', baseUrl, false);
-//     req.send(null)
-//     var tableData = JSON.parse(req.responseText);
-//     // console.log(tableData);
-//     return (tableData);
-// };
 
 function refreshPage(){
+    window.location.reload();
     window.location.reload();
     // history.go(0)
 } 
@@ -33,7 +25,7 @@ function tableDelegation() {
 	})
 }
 
-const DeleteLibrary = (target) => {
+const DeleteLibrary = async (target) => {
     var row = target.parentNode.parentNode;
     var id = row.firstElementChild.firstElementChild.value;
 
@@ -115,3 +107,13 @@ const EditLibrary = (target) => {
     target.textContent = "Confirm"
     target.classList.add("btn-confirm");
 };
+
+
+
+async function asyncCall() {
+    console.log('caling')
+    await DeleteLibrary()
+    console.log('done')
+}
+
+asyncCall();

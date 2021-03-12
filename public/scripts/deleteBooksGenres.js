@@ -4,19 +4,9 @@ console.log('hello')
 
 const baseUrl = `http://flip1.engr.oregonstate.edu:5231/books_genres`
 
-const getData = async () => {
-    var req = new XMLHttpRequest();
-    console.log(req)
-    req.open('GET', baseUrl, false);
-    req.send(null)
-    var tableData = JSON.parse(req.responseText);
-    // console.log(tableData);
-    return (tableData);
-};
-
 function refreshPage(){
     window.location.reload();
-    // history.go(0)
+    window.location.reload();
 } 
 
 function tableDelegation() {
@@ -32,7 +22,7 @@ function tableDelegation() {
 	})
 }
 
-const DeleteRelation = (target) => {
+const DeleteRelation = async (target) => {
     var row = target.parentNode.parentNode;
     var id = row.firstElementChild.firstElementChild.value;
     var id2 = row.firstElementChild.nextElementSibling.firstElementChild.value;
@@ -60,3 +50,12 @@ const DeleteRelation = (target) => {
 const UpdateRelation = (target) => {
 
 };
+
+
+async function asyncCall() {
+    console.log('caling')
+    await DeleteRelation()
+    console.log('done')
+}
+
+asyncCall();

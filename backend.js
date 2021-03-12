@@ -177,53 +177,53 @@ mysql.pool.query(getGenresQuery, function(err, rows, fields){
 });
 
 app.get('/books',function(req,res,next){
-var context = {};
-mysql.pool.query(getBooksQuery, function(err, rows, fields){
-  if(err) {
-    next(err);
-    return;
-  }
-  context.results = rows;
-
-  for (var n = 0; n < context.results.length; ++n) {
-    dateList = context.results[n].publicationDate.toDateString();
-    dateList = dateList.split(' ');
-    var year = dateList[3]
-    var month = dateList[1]
-    var day = dateList[2]
-    if (month == "Jan") {
-      month = "01";
-    } else if (month == "Feb") {
-      month = "02";
-    } else if (month == "Mar") {
-      month = "03";
-    } else if (month == "Apr") {
-      month = "04";
-    } else if (month == "May") {
-      month = "05";
-    } else if (month == "Jun") {
-      month = "06";
-    } else if (month == "Jul") {
-      month = "07";
-    } else if (month == "Aug") {
-      month = "08";
-    } else if (month == "Sep") {
-      month = "09";
-    } else if (month == "Oct") {
-      month = "10";
-    } else if (month == "Nov") {
-      month = "11";
-    } else if (month == "Dec") {
-      month = "12";
+  var context = {};
+  mysql.pool.query(getBooksQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
     }
-    
-    formattedDate = year + "-" + month + "-" + day
-    context.results[n].publicationDate = formattedDate
-  }
-
-  res.render('books', context);
-})
-});
+    context.results = rows;
+  
+    for (var n = 0; n < context.results.length; ++n) {
+      dateList = context.results[n].publicationDate.toDateString();
+      dateList = dateList.split(' ');
+      var year = dateList[3]
+      var month = dateList[1]
+      var day = dateList[2]
+      if (month == "Jan") {
+        month = "01";
+      } else if (month == "Feb") {
+        month = "02";
+      } else if (month == "Mar") {
+        month = "03";
+      } else if (month == "Apr") {
+        month = "04";
+      } else if (month == "May") {
+        month = "05";
+      } else if (month == "Jun") {
+        month = "06";
+      } else if (month == "Jul") {
+        month = "07";
+      } else if (month == "Aug") {
+        month = "08";
+      } else if (month == "Sep") {
+        month = "09";
+      } else if (month == "Oct") {
+        month = "10";
+      } else if (month == "Nov") {
+        month = "11";
+      } else if (month == "Dec") {
+        month = "12";
+      }
+      
+      formattedDate = year + "-" + month + "-" + day
+      context.results[n].publicationDate = formattedDate
+    }
+  
+    res.render('books', context);
+  })
+  });
 
 app.get('/books_genres',function(req,res,next){
 var context = {};
@@ -404,6 +404,15 @@ app.delete('/authors', function(req,res,next) {
       next(err);
       return;
     }
+  var context = {};
+  mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('authors', context);
+  })
     ////location.reload();
   });
 });
@@ -418,6 +427,15 @@ app.delete('/genres', function(req,res,next) {
       next(err);
       return;
     }
+  var context = {};
+  mysql.pool.query(getGenresQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('genres', context);
+  })
     ////location.reload();
   });
 });
@@ -432,6 +450,14 @@ app.delete('/libraries', function(req,res,next) {
       next(err);
       return;
     }
+  mysql.pool.query(selectLibraries, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('libraries', context);
+  })
     ////location.reload();
   });
 });
@@ -446,6 +472,14 @@ app.delete('/patrons', function(req,res,next) {
       next(err);
       return;
     }
+  var context = {};
+  mysql.pool.query(getPatronsQuery, function(err, rows, fields){
+  if(err) {
+    next(err);
+    return;
+  }
+  context.results = rows;
+  res.render('patrons', context)});
     ////location.reload();
   });
 });
@@ -460,13 +494,60 @@ app.delete('/books', function(req,res,next) {
       next(err);
       return;
     }
+  
+  var context = {};
+  mysql.pool.query(getBooksQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+  
+    for (var n = 0; n < context.results.length; ++n) {
+      dateList = context.results[n].publicationDate.toDateString();
+      dateList = dateList.split(' ');
+      var year = dateList[3]
+      var month = dateList[1]
+      var day = dateList[2]
+      if (month == "Jan") {
+        month = "01";
+      } else if (month == "Feb") {
+        month = "02";
+      } else if (month == "Mar") {
+        month = "03";
+      } else if (month == "Apr") {
+        month = "04";
+      } else if (month == "May") {
+        month = "05";
+      } else if (month == "Jun") {
+        month = "06";
+      } else if (month == "Jul") {
+        month = "07";
+      } else if (month == "Aug") {
+        month = "08";
+      } else if (month == "Sep") {
+        month = "09";
+      } else if (month == "Oct") {
+        month = "10";
+      } else if (month == "Nov") {
+        month = "11";
+      } else if (month == "Dec") {
+        month = "12";
+      }
+      
+      formattedDate = year + "-" + month + "-" + day
+      context.results[n].publicationDate = formattedDate
+    }
+  
+    res.render('books', context);
+  })
     ////location.reload();
   });
 });
 
 app.delete('/books_genres', function(req,res,next) {
   var context = {};
-  console.log('delete to books')
+  console.log('delete to books genres')
   var { bookID, genreID } = req.body
   if (bookID == '') {
     bookID = null
@@ -480,6 +561,17 @@ app.delete('/books_genres', function(req,res,next) {
       next(err);
       return;
     }
+
+  
+  })
+  var context = {};
+  mysql.pool.query(getBooksGenresQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('books_genres', context);
     ////location.reload();
   });
 });

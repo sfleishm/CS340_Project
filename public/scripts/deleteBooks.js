@@ -4,19 +4,10 @@ console.log('hello')
 
 const baseUrl = `http://flip1.engr.oregonstate.edu:5231/books`
 
-const getData = async () => {
-    var req = new XMLHttpRequest();
-    console.log(req)
-    req.open('GET', baseUrl, false);
-    req.send(null)
-    var tableData = JSON.parse(req.responseText);
-    // console.log(tableData);
-    return (tableData);
-};
 
 function refreshPage(){
     window.location.reload();
-    // history.go(0)
+    window.location.reload();
 } 
 
 function tableDelegation() {
@@ -34,7 +25,7 @@ function tableDelegation() {
 	})
 }
 
-const DeleteBook = (target) => {
+const DeleteBook = async (target) => {
     var row = target.parentNode.parentNode;
     var id = row.firstElementChild.firstElementChild.value;
     console.log("button works")
@@ -117,3 +108,13 @@ const EditBook = (target) => {
     target.textContent = "Confirm"
     target.classList.add("btn-confirm");
 };
+
+
+
+async function asyncCall() {
+    console.log('caling')
+    await DeleteBook()
+    console.log('done')
+}
+
+asyncCall();
