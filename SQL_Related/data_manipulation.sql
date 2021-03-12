@@ -87,3 +87,28 @@ Where patronID=?
 -- Libraries Update
 UPDATE Libraries SET name=?, street=?, state=?, city=?, zip=?
 WHERE libraryID=?
+
+
+-- Insert Page Selects for dropdowns
+SELECT libraryID, name FROM Libraries;
+SELECT authorID, authorName FROM Authors;
+SELECT genreID, genreName FROM Genres;
+
+-- Patrons Update Page
+SELECT Patrons.patronID, Patrons.firstName, Patrons.lastName, Patrons.state, Patrons.city, Patrons.street, Patrons.zip, Libraries.libraryID, Libraries.name 
+FROM Patrons
+LEFT JOIN Libraries ON Patrons.libraryID = Libraries.libraryID;
+
+-- Books Update Page
+SELECT Books.bookID, Books.title, Authors.authorID, Authors.authorName, Patrons.patronID, Patrons.firstName, Libraries.libraryID, Libraries.name, Books.publicationDate
+FROM Books
+JOIN Authors ON Books.authorID = Authors.authorID
+LEFT JOIN Patrons ON Books.patronID = Patrons.patronID
+LEFT JOIN Libraries ON Books.libraryID = Libraries.libraryID;
+
+
+-- Books_Genres Update Page
+SELECT Books.bookID, Books.title, Genres.genreID, Genres.genreName
+FROM Books 
+JOIN Books_Genres ON Books.bookID = Books_Genres.bookID
+JOIN Genres ON Books_Genres.genreID = Genres.genreID;

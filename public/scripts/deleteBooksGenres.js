@@ -24,11 +24,12 @@ function tableDelegation() {
 
 const DeleteRelation = async (target) => {
     var row = target.parentNode.parentNode;
-    var id = row.firstElementChild.firstElementChild.value;
-    var id2 = row.firstElementChild.nextElementSibling.firstElementChild.value;
+    var id = row.firstElementChild.firstElementChild.dataset.id;
+    var id2 = row.firstElementChild.nextElementSibling.firstElementChild.dataset.id;
     console.log("button works");
     console.log(id);
     console.log(id2);
+
 
     var req = new XMLHttpRequest();
     var submit = 'BookGenre'

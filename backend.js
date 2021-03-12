@@ -52,6 +52,20 @@ const updatePatron = 'UPDATE Patrons SET firstName=?, lastName=?, state=?, city=
 const updateGenre = 'UPDATE Genres SET genreName=?, description=? WHERE genreID=?';
 const updateBook = 'UPDATE Books SET title=?, authorID=?, patronID=?, libraryID=?, publicationDate=? WHERE bookID=?';
 
+const updatePatrons = `SELECT Patrons.patronID, Patrons.firstName, Patrons.lastName, Patrons.state, Patrons.city, Patrons.street, Patrons.zip, Libraries.libraryID, Libraries.name 
+                      FROM Patrons 
+                      LEFT JOIN Libraries ON Patrons.libraryID = Libraries.libraryID`;
+const updateBooksGenres = `SELECT Books.bookID, Books.title, Genres.genreID, Genres.genreName
+                          FROM Books 
+                          JOIN Books_Genres ON Books.bookID = Books_Genres.bookID
+                          JOIN Genres ON Books_Genres.genreID = Genres.genreID`;
+const updateBooks = `SELECT Books.bookID, Books.title, Authors.authorID, Authors.authorName, Patrons.patronID, Patrons.firstName, Libraries.libraryID, Libraries.name, Books.publicationDate
+                    FROM Books
+                    JOIN Authors ON Books.authorID = Authors.authorID
+                    LEFT JOIN Patrons ON Books.patronID = Patrons.patronID
+                    LEFT JOIN Libraries ON Books.libraryID = Libraries.libraryID
+                    ORDER BY Books.bookID`
+
 
 const getAuthorData = (res) => {
   mysql.pool.query(getAuthorsQuery, (err, rows, fields) => {
@@ -152,41 +166,50 @@ app.get('/check-out-return',function(req,res,next){
 
 // Authors
 app.get('/authors',function(req,res,next){
-var context = {};
-mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
-  if(err) {
-    next(err);
-    return;
-  }
-  context.results = rows;
-  res.render('authors', context);
-})
+  var context = {};
+  mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('authors', context);
+  })
 });
 
 // Libraries
 app.get('/libraries',function(req,res,next){
-var context = {};
-mysql.pool.query(selectLibraries, function(err, rows, fields){
-  if(err) {
-    next(err);
-    return;
-  }
-  context.results = rows;
-  res.render('libraries', context);
-})
+  var context = {};
+  mysql.pool.query(selectLibraries, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    res.render('libraries', context);
+  })
 });
 
 // Patrons 
 app.get('/patrons',function(req,res,next){
 var context = {};
-mysql.pool.query(getPatronsQuery, function(err, rows, fields){
-  if(err) {
-    next(err);
-    return;
-  }
-  context.results = rows;
-  res.render('patrons', context);
-})
+  mysql.pool.query(selectLibraries, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.libs = rows;
+    // console.log(context )
+  })
+  mysql.pool.query(updatePatrons, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.results = rows;
+    console.log(context);
+    res.render('patrons', context);
+  })
 });
 
 // Genres
@@ -204,7 +227,33 @@ mysql.pool.query(getGenresQuery, function(err, rows, fields){
 
 app.get('/books',function(req,res,next){
   var context = {};
-  mysql.pool.query(getBooksQuery, function(err, rows, fields){
+  mysql.pool.query(selectLibraries, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.libs = rows;
+    // console.log(context )
+  })
+  mysql.pool.query(getAuthorsQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.authors = rows;
+    // console.log(context )
+  })
+  mysql.pool.query(getPatronsQuery, function(err, rows, fields){
+    if(err) {
+      next(err);
+      return;
+    }
+    context.patrons = rows;
+    // console.log(context )
+  })
+
+
+  mysql.pool.query(updateBooks, function(err, rows, fields){
     if(err) {
       next(err);
       return;
@@ -253,7 +302,7 @@ app.get('/books',function(req,res,next){
 
 app.get('/books_genres',function(req,res,next){
 var context = {};
-mysql.pool.query(getBooksGenresQuery, function(err, rows, fields){
+mysql.pool.query(updateBooksGenres, function(err, rows, fields){
   if(err) {
     next(err);
     return;
@@ -588,11 +637,8 @@ app.delete('/books_genres', function(req,res,next) {
       next(err);
       return;
     }
-
-  
   })
-  var context = {};
-  mysql.pool.query(getBooksGenresQuery, function(err, rows, fields){
+  mysql.pool.query(updateBooksGenres, function(err, rows, fields){
     if(err) {
       next(err);
       return;

@@ -26,7 +26,7 @@
                 <th scope="col">City</th>
                 <th scope="col">Street</th>
                 <th scope="col">Zip</th>
-                <th scope="col">LibraryID</th>
+                <th scope="col">Library</th>
                 <th scope="col">Update Row</th>
                 <th scope="col">Delete Row</th>
 
@@ -42,7 +42,13 @@
                 <td><input type="text" value='{{this.city}}' class='state' disabled></td>
                 <td><input type="text" value='{{this.street}}' class='street' disabled></td>
                 <td><input type="text" value='{{this.zip}}' class='zip' disabled></td>
-                <td><input type="number" value='{{this.libraryID}}' class='id' disabled></td>
+                <td><select class='' disabled>
+                    <option value='{{this.libraryID}}' selected>{{this.name}}</option>
+                      {{#each ../libs}}
+                        <option value='{{this.libraryID}}'>{{this.name}}</option>
+                      {{/each}}
+                  </select>
+                </td>
                 <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
                 <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>

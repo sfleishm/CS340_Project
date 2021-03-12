@@ -34,9 +34,25 @@
             <tr>
                 <td><input type="number" value='{{this.bookID}}' class='id' disabled></td> 
                 <td><input type="text" value='{{this.title}}' disabled></td> 
-                <td><input type="number" value='{{this.authorID}}' class='id' disabled></td> 
-                <td><input type="number" value='{{this.patronID}}' class='id' disabled></td>
-                <td><input type="number" value='{{this.libraryID}}' class='id' disabled></td>
+                <td><select class='' disabled>
+                    <option value='{{this.authorID}}' selected>{{this.authorName}}</option>
+                      {{#each ../authors}}
+                        <option value='{{this.authorID}}'>{{this.authorName}}</option>
+                      {{/each}}
+                  </select></td> 
+                <td><select class='' disabled>
+                    <option value='{{this.patronID}}' selected>{{this.firstName}}</option>
+                    <option value=''></option>
+                      {{#each ../patrons}}
+                        <option value='{{this.patronID}}'>{{this.firstName}}</option>
+                      {{/each}}
+                  </select></td>
+                <td><select class='' disabled>
+                    <option value='{{this.libraryID}}' selected>{{this.name}}</option>
+                      {{#each ../libs}}
+                        <option value='{{this.libraryID}}'>{{this.name}}</option>
+                      {{/each}}
+                  </select></td>
                 <td><input type="text" value='{{this.publicationDate}}' disabled></td>
                 <td><button type="button" class="btn btn-primary btn-edit">Update</button></td>
                 <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>

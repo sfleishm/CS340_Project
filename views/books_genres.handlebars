@@ -8,7 +8,7 @@
 
     <!-- Search Bar -->
     <div class="input-group ">
-        <input type="search" class="form-control rounded" onkeyup="myFunction()" id='bookFilter' placeholder="Search by book ID" aria-label="Search"
+        <input type="search" class="form-control rounded" onkeyup="myFunction()" id='bookFilter' placeholder="Search by book title" aria-label="Search"
             aria-describedby="search-addon" />
         <button type="button" class="btn btn-outline-primary">search</button>
     </div>
@@ -18,8 +18,8 @@
         <table class="table justify-content-center">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Book ID</th>
-                <th scope="col">Genre ID</th>
+                <th scope="col">Book</th>
+                <th scope="col">Genre</th>
                 <th scope="col">Delete Row</th>
 
             </tr>
@@ -27,8 +27,8 @@
             <tbody id = 'tbody'>
             {{#each results}}
             <tr>
-                <td><input type="number" value='{{this.bookID}}' class='id' disabled></td> 
-                <td><input type="number" value='{{this.genreID}}' class='id' disabled></td> 
+                <td><input value='{{this.title}}' data-id={{this.bookID}} disabled></td> 
+                <td><input value='{{this.genreName}}' data-id={{this.genreID}} disabled></td> 
                 <td><button type="button" class="btn btn-danger btn-delete">Delete</button></td>
             </tr>
             {{/each}}

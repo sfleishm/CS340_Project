@@ -46,7 +46,7 @@ function SubmitBook() {
               genre1: genre1,
               genre2: genre2,
               genre3: genre3 }
-        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -69,7 +69,7 @@ function SubmitLibrary() {
         var street = document.getElementById('libraryStreet').value
         var zip = document.getElementById('libraryZip').value
         var payload = { submit: submit, name: name, state: state, city: city, street: street, zip: zip }
-        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -99,7 +99,7 @@ function SubmitPatron() {
 
         
         var payload = { submit: submit, firstName: firstName, lastName: lastName, state: state, city: city, street: street, zip: zip, libraryID: libraryID }
-        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -119,7 +119,7 @@ function SubmitGenre() {
         var genreName = document.getElementById('genreName').value
         var description = document.getElementById('genreDescription').value
         var payload = { submit: submit, genreName: genreName, description: description }
-        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
@@ -138,7 +138,7 @@ function SubmitAuthor() {
         var submit = 'Author'
         var name = document.getElementById('authorName').value
         var payload = { submit: submit, authorName: name }
-        req.open('POST', 'http://flip3.engr.oregonstate.edu:8225/insert', true);
+        req.open('POST', 'http://flip1.engr.oregonstate.edu:5231/insert', true);
         req.setRequestHeader('Content-Type', 'application/json');
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
