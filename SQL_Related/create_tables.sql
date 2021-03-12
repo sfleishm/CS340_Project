@@ -20,7 +20,7 @@ CREATE TABLE Patrons(
     city        VARCHAR (20)    NOT NULL,
     street      VARCHAR (100)   NOT NULL,    
     zip         VARCHAR (20)    NOT NULL,
-    libraryID   int             ,   
+    libraryID   int,   
     PRIMARY KEY (patronID),
     FOREIGN KEY (libraryID) REFERENCES Libraries(libraryID) ON DELETE SET NULL
 );
@@ -36,12 +36,12 @@ CREATE TABLE Authors(
 CREATE TABLE Books(
     bookID      int             NOT NULL    AUTO_INCREMENT,
     title       VARCHAR(100)    NOT NULL,
-    authorID    int             ,
+    authorID    int             NOT NULL,
     patronID    int,
-    libraryID   int             ,
+    libraryID   int,
     publicationDate DATE    NOT NULL, 
     PRIMARY KEY (bookID),
-    FOREIGN KEY (authorID)  REFERENCES Authors(authorID) ON DELETE SET NULL,
+    FOREIGN KEY (authorID)  REFERENCES Authors(authorID) ON DELETE CASCADE,
     FOREIGN KEY (patronID)  REFERENCES Patrons(patronID) ON DELETE SET NULL,
     FOREIGN KEY (libraryID) REFERENCES Libraries(libraryID) ON DELETE SET NULL
 );
@@ -56,8 +56,8 @@ CREATE TABLE Genres(
 
 -- Books_Genres in between for books and genres
 CREATE TABLE Books_Genres(
-    genreID     int             , 
-    bookID      int             ,
+    genreID     int             NOT NULL, 
+    bookID      int             NOT NULL,
     FOREIGN KEY (genreID)   REFERENCES Genres(genreID) ON DELETE CASCADE,
     FOREIGN KEY (bookID)    REFERENCES Books(bookID) ON DELETE CASCADE
 );
